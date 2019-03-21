@@ -107,7 +107,7 @@ df <- generate_issue_features(df)
 browser()
 
 # scn df
-df <- readxl::read_xlsx(path = "data/All Cases 2018.xlsx", sheet = "ICAS210219")
+df <- readxl::read_xlsx(path = "data/rawdata/All Cases 2018.xlsx", sheet = "ICAS210219")
 df1 <- df
 # df1$issues_services <- gsub("\\s+|:|/", "", df1$issues_services)
 
