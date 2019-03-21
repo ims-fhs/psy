@@ -58,6 +58,22 @@ cleanup_icas_import <- function() {
   return (df1)
 }
 
+convert_datatypes <- function(df) {
+  ret_val <- df
+  ret_val$status_of_caller <- as.factor(ret_val$status_of_caller)
+  ret_val$case_status <- as.factor(ret_val$case_status)
+  ret_val$language_code <- as.factor(ret_val$language_code)
+  ret_val$gender <- as.factor(ret_val$gender)
+  ret_val$referral_type <- as.factor(ret_val$referral_type)
+  ret_val$impact_on_work <- as.factor(ret_val$impact_on_work)
+  return (ret_val)
+}
+
+#' gerenate features
+#'
+#' @param df the data.frame
+#'
+#' @return the modified / updated data.frame
 generate_issue_features <- function(df) {
   ret_val <- df
   # determine issue categories: split by comma
@@ -70,8 +86,6 @@ generate_issue_features <- function(df) {
   category_names <- gsub("[-\\/\\& \\(\\)]", "_", category_names)
   # replace multiple sequences of underscores by one single underscore
   category_names <- gsub("_+", "_", category_names)
-  # set overall prefix for easier identification of issues
-  category_names <- paste0("iss_", category_names)
   
   # convert to lower case
   category_names <- tolower(category_names)
@@ -84,6 +98,9 @@ generate_issue_features <- function(df) {
   category_names[bad_name_ids] <- "concern_about_employee"
   bad_name_ids <- which(category_names == ":livechat") 
   category_names[bad_name_ids] <- "livechat"
+
+  # set overall prefix for easier identification of issues
+  category_names <- paste0("iss_", category_names)
   
   for (i in 1:length(categories)) {
     feature_name <- category_names[i]
@@ -100,9 +117,25 @@ generate_issue_features <- function(df) {
   return(ret_val)    
 }
 
+#' removes corrupt data (i.e. records having no gender)
+#'
+#' @param df 
+#'
+#' @return
+#' @export
+#'
+#' @examples
+strip_corrupt_data <- function(df) {
+  ret_val <- df
+  ret_val <- ret_val %>% filter(!is.na(gender))
+  return(ret_val)
+}
+
 # len: merged / overall / feature generated df
 df <- cleanup_icas_import()
+df <- convert_datatypes(df)
 df <- generate_issue_features(df)
+df <- strip_corrupt_data(df)
 
 browser()
 
