@@ -117,6 +117,19 @@ generate_issue_features <- function(df) {
   return(ret_val)    
 }
 
+#' convert logical to booleans
+#'
+#' @param df 
+#'
+#' @return
+convert_boolean_to_factors <- function(df) {
+  idx <- grep("iss_", colnames(df))
+  for (i in idx) {
+    df[,i] <- factor(df[,i], levels = c("TRUE", "FALSE"))
+  }
+  return (df)
+}
+
 #' removes corrupt data (i.e. records having no gender)
 #'
 #' @param df 
@@ -135,7 +148,9 @@ strip_corrupt_data <- function(df) {
 df <- cleanup_icas_import()
 df <- convert_datatypes(df)
 df <- generate_issue_features(df)
+df <- convert_boolean_to_factors(df)
 df <- strip_corrupt_data(df)
+
 
 browser()
 
