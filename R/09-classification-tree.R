@@ -1,5 +1,3 @@
-
-# https://www.statmethods.net/advstats/cart.html
 imsbasics::clc()
 library(tidyverse)
 library(ggplot2)
@@ -22,9 +20,3 @@ print(fit)
 plot(fit, uniform=TRUE, 
      main="Classification Tree")
 text(fit, use.n=TRUE, all=TRUE, cex=.8)
-
-fit <- glm(impact_on_work~ gender + alcohol + conflict,data=df,family=binomial())
-summary(fit)
-plot(fit)
-
-

@@ -130,6 +130,19 @@ generate_issue_features <- function(df) {
   return(ret_val)    
 }
 
+#' convert logical to booleans
+#'
+#' @param df 
+#'
+#' @return
+convert_boolean_to_factors <- function(df) {
+  idx <- grep("iss_", colnames(df))
+  for (i in idx) {
+    df[,i] <- factor(df[,i], levels = c("TRUE", "FALSE"))
+  }
+  return (df)
+}
+
 #' generate services
 #'
 #' @param df the data.frame
@@ -168,7 +181,6 @@ generate_service_features <- function(df) {
   }
   return(ret_val)    
 }
-
 
 #' removes corrupt data (i.e. records having no gender)
 #'
