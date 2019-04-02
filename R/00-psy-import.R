@@ -13,7 +13,7 @@ library(tidyverse)
 import_xls <- function(file_path) {
   # make sure, only one spreadsheet provided
   num_sheets <- length(readxl::excel_sheets(file_path))
-  assertthat::assert_that(num_sheets == 1,msg = "Only one Spreadsheet expeced!")
+  assertthat::assert_that(num_sheets == 1, msg = "Only one Spreadsheet expected!")
   df <- readxl::read_xlsx(path = file_path, na = "NA")
 return(df)
 }
@@ -55,7 +55,7 @@ cleanup_icas_import <- function() {
   # Merge column 'Issues / Services' into 'issues_services'
   df1 <- df1 %>% mutate(`issues_services` = coalesce(`issues_services`, `Issues / Services`))
   df1$`Issues / Services` <- NULL
-  return (df1)
+  return(df1)
 }
 
 convert_datatypes <- function(df) {
@@ -66,17 +66,13 @@ convert_datatypes <- function(df) {
   ret_val$gender <- as.factor(ret_val$gender)
   ret_val$referral_type <- as.factor(ret_val$referral_type)
   ret_val$impact_on_work <- as.factor(ret_val$impact_on_work)
-  return (ret_val)
+  return(ret_val)
 }
 
-cleanup_issues_services <- function(v) {
-  v <- gsub("[-\\/\\& \\(\\)]", "_", v)
-  v <- gsub("_+", "_", v)
-  # v <- gsub("(.*?)_{3,5}.+", "\\1", v)
-  v <- tolower(v)
+remove_special_char <- function(v) {
+  gsub("[-\\/\\& \\(\\)]", "_", v)
 }
 
-remove_multiple_underscore <- function()
 
 #' generate features
 #'
@@ -99,8 +95,9 @@ generate_issue_features <- function(df) {
   
   # convert to lower case
   category_names <- tolower(category_names)
-  # repair inconsistent category-names
-  bad_name_ids <- which(category_names == "routing_to_familienservice_weiterleitung_an_familienservice") 
+  
+    # repair inconsistent category-names
+    bad_name_ids <- which(category_names == "routing_to_familienservice_weiterleitung_an_familienservice") 
   category_names[bad_name_ids] <- "routing_to_familienservice"
   bad_name_ids <- which(category_names == "bem_betriebliches_eingliederungs_management_occupational_reintegration") 
   category_names[bad_name_ids] <- "occupational_reintegration"
@@ -108,7 +105,9 @@ generate_issue_features <- function(df) {
   category_names[bad_name_ids] <- "concern_about_employee"
   bad_name_ids <- which(category_names == ":livechat") 
   category_names[bad_name_ids] <- "livechat"
-
+  
+  
+  
   # set overall prefix for easier identification of issues
   category_names <- paste0("iss_", category_names)
   
@@ -143,44 +142,6 @@ convert_boolean_to_factors <- function(df) {
   return (df)
 }
 
-#' generate services
-#'
-#' @param df the data.frame
-#'
-#' @return the modified / updated data.frame
-generate_service_features <- function(df) {
-  ret_val <- df
-  # determine service categories: split by comma
-  categories <- unique(unlist(strsplit(df$issues_services,split = ",")))
-  # remove issues (everything before ':')
-  category_names <- gsub(".*:", "", categories)
-  # remove not allowed special chars
-  category_names <- gsub("[-\\/\\& \\(\\)]", "_", category_names)
-  # replace multiple sequences of underscores by one single underscore
-  category_names <- gsub("_+", "_", category_names)
-  
-  # convert to lower case
-  category_names <- tolower(category_names)
-  # repair inconsistent services
-  category_names[category_names == ""] <- NA
-
-  # set overall prefix for easier identification of issues
-  category_names <- paste0("ser_", category_names)
-  
-  for (i in 1:length(categories)) {
-    feature_name <- category_names[i]
-    if (!is.na(feature_name)) {
-      related_categories <- categories[which(category_names == feature_name)]
-      if (feature_name %in% colnames(ret_val)) {
-        ret_val[[feature_name]] <- ret_val[[feature_name]] | ret_val$issues_services %in% related_categories
-      } else {
-        ret_val[[feature_name]] <- ret_val$issues_services %in% related_categories
-      }
-      cat("Feature nr. ", i, " with name '", feature_name, "' successfully generated.\n")
-    }
-  }
-  return(ret_val)    
-}
 
 #' removes corrupt data (i.e. records having no gender)
 #'
@@ -198,51 +159,39 @@ strip_corrupt_data <- function(df) {
 
 add_boolean_sum <- function(key) {
   function(df) {
-    df[, paste0("sum_", key)] <- sapply(1:nrow(df), function(x){ sum(df[x, grepl(key, colnames(df))], na.rm = TRUE) }) - 1
+    df[, paste0("sum_", key)] <- rowSums(df[, grepl(key, colnames(df))], na.rm = TRUE) - 1
     return(df)
   }
 }
-
-
 add_sum_issues <- add_boolean_sum("iss_")
 add_sum_services <- add_boolean_sum("ser_")
 
+generate_issues_services <- function(df) {
+  foo <- strsplit(df$issues_services, ",")
+  # Get all possible features
+  feature <- unique(unlist(lapply(foo, function(x) sub(":.*", ":", x))))
+  # Get all possible services
+  service <- unique(unlist(lapply(foo, function(x) sub(".*:", ":", x))))
+  
+  # Generate occurrence table
+  result <- sapply(c(feature, service), grepl, df$issues_services)
+  # Name final result
+  colnames(result) <- c(paste0("iss_", sub(":", "", feature)),
+                        paste0("ser_", sub(":", "", service)))
+  result <- as.data.frame(result)
+  
+  df <- cbind(df, result)
+}
 
 
-# len: merged / overall / feature generated df
 df <- cleanup_icas_import()
 df <- convert_datatypes(df)
 browser()
-df$issues_services <- cleanup_issues_services(df$issues_services)
-
-foo <- strsplit(df$issues_services, ",")
-# Get all possible features
-feature <- unique(unlist(lapply(foo, function(x) sub(":.*", ":", x))))
-# Get all possible services
-service <- unique(unlist(lapply(foo, function(x) sub(".*:", ":", x))))
-
-# Generate occurrence table
-result <- sapply(c(feature, service), grepl, df$issues_services)
-# Name final result
-colnames(result) <- c(paste0("iss_", sub(":", "", feature)),
-                      paste0("ser_", sub(":", "", service)))
-result <- as.data.frame(result)
-
-df <- cbind(df, result)
+df$issues_services <- remove_special_char(df$issues_services)
+df <- generate_issues_services(df)
+colnames(df) <- tolower(colnames(df))
+colnames(df) <- gsub("(.*?)_{3,5}.+", "\\1", colnames(df))
 
 df <- strip_corrupt_data(df)
 df <- add_sum_issues(df)
 df <- add_sum_services(df)
-
-# # scn df
-# df <- readxl::read_xlsx(path = "data/rawdata/All Cases 2018.xlsx", sheet = "ICAS210219")
-# df1 <- df
-# # df1$issues_services <- gsub("\\s+|:|/", "", df1$issues_services)
-# 
-# df1 <- df1 %>% 
-#   mutate(issues_services = map(issues_services, ~strsplit(., ',')[[1]] %>% sort),
-#          I = row_number()) %>% 
-#   unnest(issues_services) %>%
-#   spread(issues_services, issues_services) %>% 
-#   mutate_at(-(1:17), ~!is.na(.)) %>% 
-#   select(-I)
