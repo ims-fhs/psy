@@ -69,17 +69,27 @@ convert_datatypes <- function(df) {
   return (ret_val)
 }
 
+cleanup_issues_services <- function(v) {
+  v <- gsub("[-\\/\\& \\(\\)]", "_", v)
+  v <- gsub("_+", "_", v)
+  # v <- gsub("(.*?)_{3,5}.+", "\\1", v)
+  v <- tolower(v)
+}
+
+remove_multiple_underscore <- function()
+
 #' generate features
 #'
 #' @param df the data.frame
 #'
 #' @return the modified / updated data.frame
 generate_issue_features <- function(df) {
+  browser()
   ret_val <- df
   # determine issue categories: split by comma
   categories <- unique(unlist(strsplit(df$issues_services,split = ",")))
   # remove services (everything after ':')
-  category_names <- gsub("([^:]+):.*", "\\1", categories)
+  category_names <- unique(gsub("([^:]+):.*", "\\1", categories))
   # remove german description
   category_names <- gsub("(.*?) {3,5}.+", "\\1", category_names)
   # remove not allowed special chars
@@ -102,13 +112,15 @@ generate_issue_features <- function(df) {
   # set overall prefix for easier identification of issues
   category_names <- paste0("iss_", category_names)
   
+  
+  
   for (i in 1:length(categories)) {
     feature_name <- category_names[i]
     if (!is.na(feature_name)) {
       related_categories <- categories[which(category_names == feature_name)]
       if (feature_name %in% colnames(ret_val)) {
-        assertthat::assert_that(sum(ret_val[[feature_name]]) <= sum(ret_val[[c(feature_name)]] | ret_val$issues_services %in% related_categories))
-        ret_val[[feature_name]] <- ret_val[[c(feature_name)]] | ret_val$issues_services %in% related_categories
+        assertthat::assert_that(sum(ret_val[[feature_name]]) == sum(ret_val[[feature_name]] | ret_val$issues_services %in% related_categories))
+        ret_val[[feature_name]] <- ret_val[[feature_name]] | ret_val$issues_services %in% related_categories
       } else {
         ret_val[[feature_name]] <- ret_val$issues_services %in% related_categories
       }
@@ -147,7 +159,7 @@ generate_service_features <- function(df) {
     if (!is.na(feature_name)) {
       related_categories <- categories[which(category_names == feature_name)]
       if (feature_name %in% colnames(ret_val)) {
-        ret_val[[feature_name]] <- ret_val[[c(feature_name)]] | ret_val$issues_services %in% related_categories
+        ret_val[[feature_name]] <- ret_val[[feature_name]] | ret_val$issues_services %in% related_categories
       } else {
         ret_val[[feature_name]] <- ret_val$issues_services %in% related_categories
       }
@@ -172,14 +184,43 @@ strip_corrupt_data <- function(df) {
   return(ret_val)
 }
 
+add_boolean_sum <- function(key) {
+  function(df) {
+    df[, paste0("sum_", key)] <- sapply(1:nrow(df), function(x){ sum(df[x, grepl(key, colnames(df))], na.rm = TRUE) }) - 1
+    return(df)
+  }
+}
+
+
+add_sum_issues <- add_boolean_sum("iss_")
+add_sum_services <- add_boolean_sum("ser_")
+
+
 
 # len: merged / overall / feature generated df
 df <- cleanup_icas_import()
 df <- convert_datatypes(df)
-df <- generate_issue_features(df)
-df <- generate_service_features(df)
-df <- strip_corrupt_data(df)
+browser()
+df$issues_services <- cleanup_issues_services(df$issues_services)
 
+foo <- strsplit(df$issues_services, ",")
+# Get all possible features
+feature <- unique(unlist(lapply(foo, function(x) sub(":.*", ":", x))))
+# Get all possible services
+service <- unique(unlist(lapply(foo, function(x) sub(".*:", ":", x))))
+
+# Generate occurrence table
+result <- sapply(c(feature, service), grepl, df$issues_services)
+# Name final result
+colnames(result) <- c(paste0("iss_", sub(":", "", feature)),
+                      paste0("ser_", sub(":", "", service)))
+result <- as.data.frame(result)
+
+df <- cbind(df, result)
+
+df <- strip_corrupt_data(df)
+df <- add_sum_issues(df)
+df <- add_sum_services(df)
 
 # # scn df
 # df <- readxl::read_xlsx(path = "data/rawdata/All Cases 2018.xlsx", sheet = "ICAS210219")
