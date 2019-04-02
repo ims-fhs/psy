@@ -1,0 +1,94 @@
+---
+title: "PSY - Explorative Datenanalyse - v2"
+author: "IMS-FHS"
+date: "16 April 2019"
+output: 
+  html_document:
+    toc: true
+---
+
+```{r setup, include=FALSE}
+imsbasics::clc()
+knitr::opts_chunk$set(echo = FALSE, fig.width = 12, message = FALSE)
+library(tidyverse)
+library(ggplot2)
+source("r/00-psy-import.R")
+```
+
+# Übersicht
+
+Grundlage sind Daten 2008 - 2018.
+
+## Anzahl Fälle nach Jahren
+
+```{r}
+ggplot(df, aes(lubridate::year(df$created_at))) + geom_bar()
+```
+
+## Anzahl Fälle nach Saisonalitäten
+
+```{r}
+ggplot(df, aes(lubridate::quarter(df$created_at))) + geom_bar() + xlab('Quarter')
+ggplot(df, aes(lubridate::quarter(df$created_at, with_year = TRUE))) + geom_bar() + xlab('Quarter')
+ggplot(df, aes(lubridate::month(df$created_at, label = TRUE))) + geom_bar() + xlab('Month')
+ggplot(df, aes(lubridate::wday(df$created_at, label = TRUE))) + geom_bar() + xlab('Weekday')
+```
+
+## Häufigkeit einzelner Variablen
+
+```{r}
+ggplot(df,aes(x=impact_on_work))+geom_bar()
+ggplot(df,aes(x=gender))+geom_bar()
+ggplot(df,aes(x=status_of_caller ))+geom_bar()
+ggplot(df,aes(x=language_code ))+geom_bar()
+ggplot(df,aes(x=referral_type ))+geom_bar()
+```
+
+# Impact on Work
+
+```{r, include = FALSE}
+df$impact_on_work <- as.factor(df$impact_on_work)
+df$impact_on_work <- factor(df$impact_on_work, levels(df$impact_on_work)[c(2,4,1,5,3)])
+```
+
+## Impact on Work vs. other variables
+
+```{r}
+ggplot(df %>% group_by(gender, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = gender))+geom_bar(stat = "identity", position = "dodge")
+ggplot(df %>% group_by(status_of_caller, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = status_of_caller))+geom_bar(stat = "identity", position = "dodge")
+ggplot(df %>% group_by(language_code, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = language_code))+geom_bar(stat = "identity", position = "dodge")
+ggplot(df %>% group_by(referral_type, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = referral_type))+geom_bar(stat = "identity", position = "dodge")
+```
+
+## Impact on Work vs. Saison
+
+```{r}
+ggplot(df %>% mutate(wday = lubridate::wday(df$created_at, label = TRUE)) %>% group_by(wday, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = wday))+geom_bar(stat = "identity", position = "dodge")
+ggplot(df %>% mutate(month = lubridate::month(df$created_at, label = TRUE)) %>% group_by(month, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = month))+geom_bar(stat = "identity", position = "dodge")
+ggplot(df %>% mutate(quarter = as.factor(lubridate::quarter(df$created_at))) %>% group_by(quarter, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = quarter))+geom_bar(stat = "identity", position = "dodge")
+ggplot(df %>% mutate(year = as.factor(lubridate::year(df$created_at))) %>% group_by(year, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = year))+geom_bar(stat = "identity", position = "dodge")
+```
