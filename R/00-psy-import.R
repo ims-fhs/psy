@@ -186,7 +186,7 @@ generate_issues_services <- function(df) {
 
 df <- cleanup_icas_import()
 df <- convert_datatypes(df)
-browser()
+
 df$issues_services <- remove_special_char(df$issues_services)
 df <- generate_issues_services(df)
 colnames(df) <- tolower(colnames(df))
@@ -195,3 +195,7 @@ colnames(df) <- gsub("(.*?)_{3,5}.+", "\\1", colnames(df))
 df <- strip_corrupt_data(df)
 df <- add_sum_issues(df)
 df <- add_sum_services(df)
+
+issues <- sort(c("alcohol", "divorce", "work", "conflict", "violence", "trauma", "tax", "stress", "relationship", "redundancy", "mobbing"), decreasing = FALSE)
+sapply(issues, function(x) df <<- df %>% mutate(!!x := grepl(x, df$issues_services, ignore.case = TRUE)))
+

@@ -5,14 +5,16 @@ date: "16 April 2019"
 output: 
   html_document:
     toc: true
+    toc_float: true
 ---
 
 ```{r setup, include=FALSE}
 imsbasics::clc()
-knitr::opts_chunk$set(echo = FALSE, fig.width = 12, message = FALSE)
+knitr::opts_chunk$set(echo = FALSE, fig.width = 12, message = FALSE, cache = TRUE)
 library(tidyverse)
 library(ggplot2)
 source("r/00-psy-import.R")
+
 ```
 
 # Übersicht
@@ -21,13 +23,13 @@ Grundlage sind Daten 2008 - 2018.
 
 ## Anzahl Fälle nach Jahren
 
-```{r}
-ggplot(df, aes(lubridate::year(df$created_at))) + geom_bar()
+```{r cases-per-year}
+ggplot(df, aes(lubridate::year(df$created_at))) + geom_bar() + xlab('Year')
 ```
 
 ## Anzahl Fälle nach Saisonalitäten
 
-```{r}
+```{r cases-per-season}
 ggplot(df, aes(lubridate::quarter(df$created_at))) + geom_bar() + xlab('Quarter')
 ggplot(df, aes(lubridate::quarter(df$created_at, with_year = TRUE))) + geom_bar() + xlab('Quarter')
 ggplot(df, aes(lubridate::month(df$created_at, label = TRUE))) + geom_bar() + xlab('Month')
@@ -36,7 +38,7 @@ ggplot(df, aes(lubridate::wday(df$created_at, label = TRUE))) + geom_bar() + xla
 
 ## Häufigkeit einzelner Variablen
 
-```{r}
+```{r single-vars}
 ggplot(df,aes(x=impact_on_work))+geom_bar()
 ggplot(df,aes(x=gender))+geom_bar()
 ggplot(df,aes(x=status_of_caller ))+geom_bar()
@@ -46,14 +48,14 @@ ggplot(df,aes(x=referral_type ))+geom_bar()
 
 # Impact on Work
 
-```{r, include = FALSE}
+```{r impact-on-work, include = FALSE}
 df$impact_on_work <- as.factor(df$impact_on_work)
 df$impact_on_work <- factor(df$impact_on_work, levels(df$impact_on_work)[c(2,4,1,5,3)])
 ```
 
 ## Impact on Work vs. other variables
 
-```{r}
+```{r impact-on-work-vs-others}
 ggplot(df %>% group_by(gender, impact_on_work) %>%
          summarise(n = n()) %>%
          mutate(percentage = 100 * n / sum(n))
@@ -70,11 +72,15 @@ ggplot(df %>% group_by(referral_type, impact_on_work) %>%
          summarise(n = n()) %>%
          mutate(percentage = 100 * n / sum(n))
        ,aes(x=impact_on_work, y = percentage, fill = referral_type))+geom_bar(stat = "identity", position = "dodge")
+ggplot(df %>% mutate(sum_iss_ = as.factor(sum_iss_)) %>% group_by(sum_iss_, impact_on_work) %>%
+         summarise(n = n()) %>%
+         mutate(percentage = 100 * n / sum(n))
+       ,aes(x=impact_on_work, y = percentage, fill = sum_iss_))+geom_bar(stat = "identity", position = "dodge")
 ```
 
 ## Impact on Work vs. Saison
 
-```{r}
+```{r impact-on-work-vs-season}
 ggplot(df %>% mutate(wday = lubridate::wday(df$created_at, label = TRUE)) %>% group_by(wday, impact_on_work) %>%
          summarise(n = n()) %>%
          mutate(percentage = 100 * n / sum(n))
@@ -91,4 +97,61 @@ ggplot(df %>% mutate(year = as.factor(lubridate::year(df$created_at))) %>% group
          summarise(n = n()) %>%
          mutate(percentage = 100 * n / sum(n))
        ,aes(x=impact_on_work, y = percentage, fill = year))+geom_bar(stat = "identity", position = "dodge")
+```
+
+
+## Issues vs. Impact on work
+
+```{r issues-vs-impact-on-work-prep, include = FALSE}
+issues <- sort(c("alcohol", "divorce", "work", "conflict", "violence", "trauma", "tax", "stress", "relationship", "redundancy", "mobbing"), decreasing = FALSE)
+```
+```{r issues-vs-impact-on-work}
+for(i in seq_along(issues)) {
+  df1 <- df %>%
+           group_by_(issues[i], "impact_on_work") %>%
+           summarise (n = n()) %>%
+           mutate(percentage = 100 * n / sum(n))
+  print(ggplot(df1,aes_string(x="impact_on_work", y = "percentage", fill = issues[i]))+geom_bar(stat = "identity", position = "dodge"))
+}
+```
+
+
+## Issues by Gender
+```{r issues-vs-gender}
+issues <- sort(c("alcohol", "divorce", "work", "conflict", "violence", "trauma", "tax", "stress", "relationship", "redundancy", "mobbing"), decreasing = FALSE)
+for(i in seq_along(issues)) {
+  df1 <- df %>%
+           group_by_(issues[i], "gender") %>%
+           summarise (n = n()) %>%
+           mutate(percentage = 100 * n / sum(n))
+  print(ggplot(df1,aes_string(x=issues[i], y = "percentage", fill = "gender"))+geom_bar(stat = "identity", position = "dodge"))
+}
+```
+
+# On Sick Leave
+
+```{r on-sick-leave, include = FALSE}
+sick <- df[df$impact_on_work == "On Sick Leave/Absent", ]
+```
+
+## Einzelne Variablen
+```{r on-sick-leave-single-vars}
+ggplot(sick,aes(x=gender))+geom_bar()
+ggplot(sick,aes(x=status_of_caller ))+geom_bar()
+ggplot(sick,aes(x=language_code ))+geom_bar()
+ggplot(sick,aes(x=referral_type ))+geom_bar()
+
+```
+
+
+## Issues by Gender (on Sick Leave)
+```{r on-sick-leave-issues-vs-gender}
+issues <- sort(c("alcohol", "divorce", "work", "conflict", "violence", "trauma", "tax", "stress", "relationship", "redundancy", "mobbing"), decreasing = FALSE)
+for(i in seq_along(issues)) {
+  sick1 <- sick %>%
+           group_by_(issues[i], "gender") %>%
+           summarise (n = n()) %>%
+           mutate(percentage = 100 * n / sum(n))
+  print(ggplot(sick1,aes_string(x=issues[i], y = "percentage", fill = "gender"))+geom_bar(stat = "identity", position = "dodge"))
+}
 ```
