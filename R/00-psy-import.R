@@ -191,7 +191,6 @@ generate_issues_services <- function(df) {
 #'
 #' @return the enriched dataframe
 enrich_additional_features <- function(df) {
-  browser()
   df <- df %>% mutate(created_month = lubridate::month(df$created_at))
   df <- df %>% mutate(created_quarter = lubridate::quarter(df$created_at))
   df <- df %>% mutate(created_year = lubridate::year(df$created_at))
@@ -231,12 +230,12 @@ if (!file.exists(paste0(file_path, file_name_rds))) {
   # save data to local rds file
   saveRDS(df, paste0(file_path, file_name_rds))
     
-  foreign::write.foreign(mydata, 
+  foreign::write.foreign(df, 
                 paste0(file_path, file_name, "_spss.txt"), 
                 paste0(file_path, file_name, "_spss.sps"), 
                 package="SPSS")
 
-  foreign::write.foreign(mydata, 
+  foreign::write.foreign(df, 
               paste0(file_path, file_name, "_sas.txt"), 
               paste0(file_path, file_name, "_sas.sas"), 
               package="SAS")
