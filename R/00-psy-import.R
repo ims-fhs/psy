@@ -229,17 +229,21 @@ if (!file.exists(paste0(file_path, file_name_rds))) {
 
   # save data to local rds file
   saveRDS(df, paste0(file_path, file_name_rds))
-    
+
+  # export 4 SPSS
   foreign::write.foreign(df, 
                 paste0(file_path, file_name, "_spss.txt"), 
                 paste0(file_path, file_name, "_spss.sps"), 
                 package="SPSS")
 
+  # export 4 SAS
   foreign::write.foreign(df, 
               paste0(file_path, file_name, "_sas.txt"), 
               paste0(file_path, file_name, "_sas.sas"), 
               package="SAS")
   
+  # export 4 STATA
+  foreign::write.dta(df, paste0(file_path, file_name, "_stata.dta"))
 } else {
   # load data from rds
   df <- readRDS(paste0(file_path, file_name_rds))
