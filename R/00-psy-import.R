@@ -244,6 +244,9 @@ if (!file.exists(paste0(file_path, file_name_rds))) {
   
   # export 4 STATA
   foreign::write.dta(df, paste0(file_path, file_name, "_stata.dta"))
+  
+  # export 4 CSV
+  write.csv2(df, paste0(file_path, file_name, ".csv"), fileEncoding = "UTF-8")
 } else {
   # load data from rds
   df <- readRDS(paste0(file_path, file_name_rds))
