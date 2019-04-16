@@ -1,7 +1,7 @@
 imsbasics::clc()
 library(tidyverse)
 library(lubridate)
-library(foreign)
+library(haven)
 
 #' read the given xls and generate new features based on the field 'issues_services' 
 #'
@@ -57,6 +57,10 @@ cleanup_icas_import <- function() {
   # Merge column 'Issues / Services' into 'issues_services'
   df1 <- df1 %>% mutate(`issues_services` = coalesce(`issues_services`, `Issues / Services`))
   df1$`Issues / Services` <- NULL
+  df1$impact_on_work <- factor(df1$impact_on_work, 
+                               levels = c("Normal", "Satisfactory", 
+                                          "Impaired", "Severely Impaired", 
+                                          "On Sick Leave/Absent Satisfactory"))
   return(df1)
 }
 
@@ -82,7 +86,6 @@ remove_special_char <- function(v) {
 #'
 #' @return the modified / updated data.frame
 generate_issue_features <- function(df) {
-  browser()
   ret_val <- df
   # determine issue categories: split by comma
   categories <- unique(unlist(strsplit(df$issues_services,split = ",")))
@@ -201,6 +204,7 @@ enrich_additional_features <- function(df) {
                                              difftime(time1 = date(df$case_closed_at), 
                                                       time2 = df$created_at,
                                                       units = c("days")), NA))
+
   # set duration to 1 for cases, which have been closed on same day
   df$case_timespan[df$case_timespan == 0] <- 1
   return(df)
@@ -232,20 +236,8 @@ if (!file.exists(paste0(file_path, file_name_rds))) {
   saveRDS(df, paste0(file_path, file_name_rds))
 
   # export 4 SPSS
-  foreign::write.foreign(df, 
-                paste0(file_path, file_name, "_spss.txt"), 
-                paste0(file_path, file_name, "_spss.sps"), 
-                package="SPSS")
+  haven::write_sav(df, paste0(file_path, file_name, "_spss.sav"))
 
-  # export 4 SAS
-  foreign::write.foreign(df, 
-              paste0(file_path, file_name, "_sas.txt"), 
-              paste0(file_path, file_name, "_sas.sas"), 
-              package="SAS")
-  
-  # export 4 STATA
-  foreign::write.dta(df, paste0(file_path, file_name, "_stata.dta"))
-  
   # export 4 CSV
   write.csv2(df, paste0(file_path, file_name, ".csv"), fileEncoding = "UTF-8")
 } else {
