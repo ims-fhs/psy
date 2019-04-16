@@ -102,3 +102,12 @@ points(coords[which(sdf$language_code == "DE"),], col = "black")
 ```
 
 
+## Nach Erstellungszeitpunkt
+
+```{r}
+barplot(table(sdf$created_year)/nrow(sdf), ylab = "%", main = "Nach Jahr")
+barplot(table(sdf$created_month)/nrow(sdf), ylab = "%", main = "Nach Monat")
+barplot(table(sdf$created_quarter)/nrow(sdf), ylab = "%", main = "Nach Quartal")
+barplot(table(sdf$created_weekday)/nrow(sdf), ylab = "%", main = "Nach Wochentag")
+barplot(table(sdf$created_hour)/nrow(sdf), ylab = "%", main = "Nach Tageszeit")
+```

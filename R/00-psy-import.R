@@ -195,6 +195,7 @@ enrich_additional_features <- function(df) {
   df <- df %>% mutate(created_quarter = lubridate::quarter(df$created_at))
   df <- df %>% mutate(created_year = lubridate::year(df$created_at))
   df <- df %>% mutate(created_hour = lubridate::hour(df$created_at))
+  df <- df %>% mutate(created_weekday = weekdays(df$created_at))
   df <- df %>% mutate(case_closed = ifelse(!is.na(df$case_closed_at), 1, 0))
   df <- df %>% mutate(case_timespan = ifelse(!is.na(df$case_closed_at), 
                                              difftime(time1 = date(df$case_closed_at), 
