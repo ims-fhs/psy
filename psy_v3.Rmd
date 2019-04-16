@@ -16,13 +16,16 @@ library(MASS)
 library(haven)
 library(GPArotation)
 library(cluster)
+library(klaR)
+library(polycor)
+library(mvtnorm)
 library(car)
 source("r/00-psy-import.R")
 
 ```
 
 
-```{r echo=FALSE, include=TRUE}
+```{r echo=FALSE, include=TRUE, cache=TRUE}
 # data preparation
 # subset due to memory shortage
 sample_size <- 3000
@@ -35,7 +38,7 @@ col_ids <- grep("^iss_.+", colnames(sdf))
 # only keep iss_* columns in sdf_num having at least one non-zero value
 sdf_num <- sdf %>% dplyr::select(col_ids)
 sdf_num <- sdf_num %>% mutate_each(as.numeric, 1:ncol(sdf_num))
-sdf_num <- sdf_num[, colSums(sdf_num != 0) > 0]
+# sdf_num <- sdf_num[, colSums(sdf_num != 0) > 0]
 
 sdf_fact <- sdf_num %>% mutate_each(list(factor), 1:ncol(sdf_num))
 
@@ -62,7 +65,7 @@ cat("Years: ", sort(unique(sdf$created_year)))
 barplot(table(sdf$gender)/nrow(sdf),  ylab = "%", main="Geschlecht")
 ```
 
-```{r }
+```{r}
 plot.new()
 plot(coords, xlab = "Distanz x", ylab = "Distanz y")
 legend("topright", 
@@ -86,7 +89,7 @@ barplot(table(sdf$language_code)/nrow(sdf), ylab = "%", main="Sprache")
 ```
 
 
-```{r }
+```{r}
 plot.new()
 plot(coords[which(sdf$language_code == "FR"),], col = "red", 
      xlab = "Distanz x", ylab = "Distanz y")
@@ -132,6 +135,30 @@ points(coords[which(sdf$impact_on_work == "Severely Impaired"),], col = "orange"
 points(coords[which(sdf$impact_on_work == "On Sick Leave/Absent Satisfactory"),], col = "red")
 ```
 
+## Fälle nach Clusterzugehörigkeit
+```{r}
+clust_num <- 5
+plot.new()
+cluster.results <- klaR::kmodes(sdf_fact, clust_num, iter.max = 10, weighted = FALSE )
+summary(cluster.results)
+plot(coords, col = cluster.results$cluster, 
+     xlab = "Distanz x", ylab = "Distanz y")
+legend("topright", 
+  legend = 1:clust_num, 
+  col = 1:clust_num, 
+  pch = rep(19, clust_num), 
+  bty = "o", 
+  pt.cex = 2, 
+  cex = 1.2,  
+  text.col = "black", 
+  horiz = F , 
+  inset = c(0.1, 0.1))
+# points(coords[which(sdf$impact_on_work == "Satisfactory"),], col = "green")
+# points(coords[which(sdf$impact_on_work == "Impaired"),], col = "blue")
+
+
+```
+
 
 
 ## Exploratory Factor Analysis 
@@ -165,13 +192,14 @@ Basierend auf diesem Scree-Plot kann davon ausgegangen werden, dass zur Erkläru
 ```{r}
 num_comp_to_extract <- 4
 # berechnung korrelationsmatrix
-cor_mat <- cor(sdf_num)
+# cor_mat <- cor(sdf_num)
 # diag(cor_mat) <- psych::smc(sdf_num)
+# cor_mat <- polycor::hetcor(sdf_fact, ML = TRUE)
 # plot(eigen(cor_mat)$values, ylab = "Eigenvalue", xlab = "Factor", 
 #      type = "b", ylim = c(0,1.5))
 
-fit_fa <- psych::fa(r = cor_mat, nfactors = num_comp_to_extract, fm = "pa", rotate = "promax")
-summary(fit_fa)
+# fit_fa <- psych::fa(r = cor_mat, nfactors = num_comp_to_extract, rotate = "varimax")
+# summary(fit_fa)
 
 # fit <- psych::principal(r = cor_mat, nfactors = num_comp_to_extract, rotate = "promax")
 
