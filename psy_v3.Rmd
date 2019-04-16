@@ -13,6 +13,7 @@ knitr::opts_chunk$set(echo = FALSE, fig.width = 12, message = FALSE, cache = FAL
 library(tidyverse)
 library(ggplot2)
 library(MASS)
+library(haven)
 library(cluster)
 library(car)
 source("r/00-psy-import.R")
@@ -22,22 +23,23 @@ source("r/00-psy-import.R")
 
 ```{r echo=FALSE, include=TRUE}
 # subset due to memory shortage
-sample_size <- 3000
+sample_size <- 30
 # sdf <- df[1:sample_size, ]
 sdf <- df[sample(1:nrow(df), sample_size, replace = F), ]
 # make factor variables out of booleans
-col_ids <- grep("iss_", colnames(sdf))
-sdf <- sdf%>%mutate_each(list(factor), col_ids)
-sdf$iss_ <- NULL
+col_ids <- grep("^iss_.+", colnames(sdf))
+# sdf <- sdf %>% mutate_each(list(factor), col_ids)
+sdf <- sdf %>% mutate_each(as.numeric, col_ids)
 sdf$iss_na <- NULL
+sdf$ser_na <- NULL
+sdf_num <- sdf %>% dplyr::select(col_ids)
 
-ind_vars <- c("gender", "language_code", grep("iss_", colnames(sdf), value = TRUE))
-ind_vars <- grep("iss_", colnames(sdf), value = TRUE)
+# ind_vars <- c("gender", "language_code", grep("iss_", colnames(sdf), value = TRUE))
+ind_vars <- grep("^iss_.+", colnames(sdf), value = TRUE)
 
 # a) dissimilarity matrix by daisy, metric multidimensional scaling
 # plot by dissimilarity matrix
-
-diss_matrix <- daisy(sdf[, ind_vars])
+diss_matrix <- daisy(sdf_num)
 coords <- cmdscale(diss_matrix)
 
 ```
@@ -103,12 +105,16 @@ points(coords[which(sdf$language_code == "DE"),], col = "black")
 ```
 
 
-## Fälle nach Erstellungszeitpunkt
 
+## Exploratory Factor Analysis 
+Quelle Siehe: https://www.statmethods.net/advstats/factor.html
 ```{r}
-barplot(table(sdf$created_year)/nrow(sdf), ylab = "%", main = "Nach Jahr")
-barplot(table(sdf$created_month)/nrow(sdf), ylab = "%", main = "Nach Monat")
-barplot(table(sdf$created_quarter)/nrow(sdf), ylab = "%", main = "Nach Quartal")
-barplot(table(sdf$created_weekday)/nrow(sdf), ylab = "%", main = "Nach Wochentag")
-barplot(table(sdf$created_hour)/nrow(sdf), ylab = "%", main = "Nach Tageszeit")
+# fit <- factanal(sdf, 3, rotation="varimax")
+# print(fit, digits=2, cutoff=.3, sort=TRUE)
+# # plot factor 1 by factor 2 
+# load <- fit$loadings[,1:2] 
+# plot(load,type="n") # set up plot 
+# text(load,labels=names(mydata),cex=.7) # add variable names
+
+
 ```
