@@ -53,15 +53,15 @@ cat("Anzahl Records:", nrow(sdf))
 cat("Years: ", sort(unique(sdf$created_year)))
 ```
 
-## Nach Geschlecht
+## Fälle nach Geschlecht
 
 ```{r}
-barplot(table(sdf$gender)/nrow(sdf),  ylab = "%")
+barplot(table(sdf$gender)/nrow(sdf),  ylab = "%", main="Geschlecht")
 ```
 
 ```{r }
 plot.new()
-plot(coords)
+plot(coords, xlab = "Distanz x", ylab = "Distanz y")
 legend("topright", 
   legend = c("female", "male"), 
   col = c("red", "blue"), 
@@ -76,16 +76,17 @@ points(coords[which(sdf$gender == "F"),], col = "red")
 points(coords[which(sdf$gender == "M"),], col = "blue")
 ```
 
-## Nach Sprache
+## Fälle nach Sprache
 
 ```{r}
-barplot(table(sdf$language_code)/nrow(sdf), ylab = "%")
+barplot(table(sdf$language_code)/nrow(sdf), ylab = "%", main="Sprache")
 ```
 
 
 ```{r }
 plot.new()
-plot(coords[which(sdf$language_code == "FR"),], col = "red")
+plot(coords[which(sdf$language_code == "FR"),], col = "red", 
+     xlab = "Distanz x", ylab = "Distanz y")
 legend("topright", 
   legend = c("de", "it", "en", "fr"), 
   col = c("black", "blue", "green", "red"), 
@@ -102,7 +103,7 @@ points(coords[which(sdf$language_code == "DE"),], col = "black")
 ```
 
 
-## Nach Erstellungszeitpunkt
+## Fälle nach Erstellungszeitpunkt
 
 ```{r}
 barplot(table(sdf$created_year)/nrow(sdf), ylab = "%", main = "Nach Jahr")
