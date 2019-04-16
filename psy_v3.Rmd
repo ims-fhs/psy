@@ -1,0 +1,104 @@
+---
+title: "PSY - Explorative Datenanalyse - v3"
+author: "IMS-FHS"
+date: "16 April 2019"
+output: 
+  html_document:
+    toc: true
+    toc_float: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, fig.width = 12, message = FALSE, cache = FALSE)
+library(tidyverse)
+library(ggplot2)
+library(MASS)
+library(cluster)
+library(car)
+source("r/00-psy-import.R")
+
+```
+
+
+```{r echo=FALSE, include=TRUE}
+# subset due to memory shortage
+sample_size <- 3000
+# sdf <- df[1:sample_size, ]
+sdf <- df[sample(1:nrow(df), sample_size, replace = F), ]
+# make factor variables out of booleans
+col_ids <- grep("iss_", colnames(sdf))
+sdf <- sdf%>%mutate_each(list(factor), col_ids)
+sdf$iss_ <- NULL
+sdf$iss_na <- NULL
+
+ind_vars <- c("gender", "language_code", grep("iss_", colnames(sdf), value = TRUE))
+ind_vars <- grep("iss_", colnames(sdf), value = TRUE)
+
+# a) dissimilarity matrix by daisy, metric multidimensional scaling
+# plot by dissimilarity matrix
+
+diss_matrix <- daisy(sdf[, ind_vars])
+coords <- cmdscale(diss_matrix)
+
+```
+
+
+# Übersicht
+
+Grundlage sind Daten 2008 - 2018
+
+## Infos
+```{r}
+cat("Anzahl Records:", nrow(sdf))
+cat("Years: ", sort(unique(sdf$created_year)))
+```
+
+## Nach Geschlecht
+
+```{r}
+barplot(table(sdf$gender)/nrow(sdf),  ylab = "%")
+```
+
+```{r }
+plot.new()
+plot(coords)
+legend("topright", 
+  legend = c("female", "male"), 
+  col = c("red", "blue"), 
+  pch = c(19,19), 
+  bty = "o", 
+  pt.cex = 2, 
+  cex = 1.2,  
+  text.col = "black", 
+  horiz = F , 
+  inset = c(0.1, 0.1))
+points(coords[which(sdf$gender == "F"),], col = "red")
+points(coords[which(sdf$gender == "M"),], col = "blue")
+```
+
+## Nach Sprache
+
+```{r}
+barplot(table(sdf$language_code)/nrow(sdf), ylab = "%")
+```
+
+
+```{r }
+plot.new()
+plot(coords[which(sdf$language_code == "FR"),], col = "red")
+legend("topright", 
+  legend = c("de", "it", "en", "fr"), 
+  col = c("black", "blue", "green", "red"), 
+  pch = rep(19,4), 
+  bty = "o", 
+  pt.cex = 2, 
+  cex = 1.2,  
+  text.col = "black", 
+  horiz = F , 
+  inset = c(0.1, 0.1))
+points(coords[which(sdf$language_code == "EN"),], col = "green")
+points(coords[which(sdf$language_code == "IT"),], col = "blue")
+points(coords[which(sdf$language_code == "DE"),], col = "black")
+```
+
+
