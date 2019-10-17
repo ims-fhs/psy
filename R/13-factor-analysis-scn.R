@@ -36,5 +36,3 @@ fviz_dend(res.hc, k = 4, # Cut in four groups
           color_labels_by_k = TRUE, # color labels by groups
           rect = TRUE # Add rectangle around groups
 )
-
-install.packages("mvtnorm")
