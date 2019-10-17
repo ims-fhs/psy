@@ -1,7 +1,5 @@
 imsbasics::clc()
 library(tidyverse)
-library(lubridate)
-library(haven)
 
 #' read the given xls and generate new features based on the field 'issues_services' 
 #'
@@ -57,10 +55,6 @@ cleanup_icas_import <- function() {
   # Merge column 'Issues / Services' into 'issues_services'
   df1 <- df1 %>% mutate(`issues_services` = coalesce(`issues_services`, `Issues / Services`))
   df1$`Issues / Services` <- NULL
-  df1$impact_on_work <- factor(df1$impact_on_work, 
-                               levels = c("Normal", "Satisfactory", 
-                                          "Impaired", "Severely Impaired", 
-                                          "On Sick Leave/Absent Satisfactory"))
   return(df1)
 }
 
@@ -86,6 +80,7 @@ remove_special_char <- function(v) {
 #'
 #' @return the modified / updated data.frame
 generate_issue_features <- function(df) {
+  browser()
   ret_val <- df
   # determine issue categories: split by comma
   categories <- unique(unlist(strsplit(df$issues_services,split = ",")))
@@ -188,60 +183,19 @@ generate_issues_services <- function(df) {
   df <- cbind(df, result)
 }
 
-#' add date fields to the dataframe
-#'
-#' @param df the dataframe
-#'
-#' @return the enriched dataframe
-enrich_additional_features <- function(df) {
-  df <- df %>% mutate(created_month = lubridate::month(df$created_at))
-  df <- df %>% mutate(created_quarter = lubridate::quarter(df$created_at))
-  df <- df %>% mutate(created_year = lubridate::year(df$created_at))
-  df <- df %>% mutate(created_hour = lubridate::hour(df$created_at))
-  df <- df %>% mutate(created_weekday = weekdays(df$created_at))
-  df <- df %>% mutate(case_closed = ifelse(!is.na(df$case_closed_at), 1, 0))
-  df <- df %>% mutate(case_timespan = ifelse(!is.na(df$case_closed_at), 
-                                             difftime(time1 = date(df$case_closed_at), 
-                                                      time2 = df$created_at,
-                                                      units = c("days")), NA))
 
-  # set duration to 1 for cases, which have been closed on same day
-  df$case_timespan[df$case_timespan == 0] <- 1
-  return(df)
-}
+df <- cleanup_icas_import()
+df <- convert_datatypes(df)
 
-file_path <- "data/RData/"
-file_name <- "psy_data"
-file_name_rds <- paste0(file_name, ".rds")
+df$issues_services <- remove_special_char(df$issues_services)
+df <- generate_issues_services(df)
+colnames(df) <- tolower(colnames(df))
+colnames(df) <- gsub("(.*?)_{3,5}.+", "\\1", colnames(df))
 
-# render file, if not yet generated
-if (!file.exists(paste0(file_path, file_name_rds))) {
-  df <- cleanup_icas_import()
-  df <- convert_datatypes(df)
-  
-  df$issues_services <- remove_special_char(df$issues_services)
-  df <- generate_issues_services(df)
-  colnames(df) <- tolower(colnames(df))
-  colnames(df) <- gsub("(.*?)_{3,5}.+", "\\1", colnames(df))
-  
-  df <- strip_corrupt_data(df)
-  df <- add_sum_issues(df)
-  df <- add_sum_services(df)
-  df <- enrich_additional_features(df)
-  
-  issues <- sort(c("alcohol", "divorce", "work", "conflict", "violence", "trauma", "tax", "stress", "relationship", "redundancy", "mobbing"), decreasing = FALSE)
-  sapply(issues, function(x) df <<- df %>% mutate(!!x := grepl(x, df$issues_services, ignore.case = TRUE)))
+df <- strip_corrupt_data(df)
+df <- add_sum_issues(df)
+df <- add_sum_services(df)
 
-  # save data to local rds file
-  saveRDS(df, paste0(file_path, file_name_rds))
-
-  # export 4 SPSS
-  haven::write_sav(df, paste0(file_path, file_name, "_spss.sav"))
-
-  # export 4 CSV
-  write.csv2(df, paste0(file_path, file_name, ".csv"), fileEncoding = "UTF-8")
-} else {
-  # load data from rds
-  df <- readRDS(paste0(file_path, file_name_rds))
-}
+issues <- sort(c("alcohol", "divorce", "work", "conflict", "violence", "trauma", "tax", "stress", "relationship", "redundancy", "mobbing"), decreasing = FALSE)
+sapply(issues, function(x) df <<- df %>% mutate(!!x := grepl(x, df$issues_services, ignore.case = TRUE)))
 
