@@ -1,0 +1,127 @@
+{UTF-8}
+Zufriedenheit mit der Arbeitsproduktivität  = A FUNCTION OF( Erledigte Aufgaben,Leistungsfähigkeit\
+		)
+	~	
+	~		|
+
+Energielevel  = A FUNCTION OF( Schlafmenge)
+	~	
+	~		|
+
+Erledigte Aufgaben  = A FUNCTION OF( Arbeitszeit,Energielevel,Leistungsfähigkeit)
+	~	
+	~		|
+
+Leistungsfähigkeit  = A FUNCTION OF( Energielevel,Zufriedenheit mit der Arbeitsproduktivität\
+		)
+	~	
+	~		|
+
+Stress  = A FUNCTION OF( Arbeitszeit,Energielevel,Erledigte Aufgaben)
+	~	
+	~		|
+
+Schlafqualität  = A FUNCTION OF( Stress)
+	~	
+	~		|
+
+Zeit im Bett  = A FUNCTION OF( )
+	~	
+	~		|
+
+Schlafmenge  = A FUNCTION OF( Schlafqualität,Zeit im Bett)
+	~	
+	~		|
+
+Arbeitszeit  = A FUNCTION OF( Zufriedenheit mit der Arbeitsproduktivität)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,130,0
+10,1,Energielevel,277,187,38,11,8,3,0,0,0,0,0,0
+10,2,Erledigte Aufgaben,429,231,60,11,8,3,0,0,0,0,0,0
+10,3,Zufriedenheit mit der Arbeitsproduktivität,646,214,66,19,8,3,0,0,0,0,0,0
+10,4,Arbeitszeit,346,329,34,11,8,3,0,0,0,0,0,0
+1,5,1,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(388,210)|
+1,6,2,3,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(555,205)|
+1,7,3,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(396,346)|
+1,8,4,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(380,256)|
+1,9,3,26,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(493,111)|
+12,10,0,496,286,20,20,4,7,0,0,-1,0,0,0
+B
+12,11,0,265,225,20,20,4,7,0,0,-1,0,0,0
+R
+12,12,0,451,173,20,20,5,7,0,0,-1,0,0,0
+R
+10,13,Stress,230,290,21,11,8,3,0,0,0,0,0,0
+1,14,4,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(266,326)|
+10,15,Schlafqualität,129,292,42,11,8,3,0,0,0,0,0,0
+1,16,13,15,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(179,333)|
+10,17,Schlafmenge,126,207,40,11,8,3,0,0,0,0,0,0
+10,18,Zeit im Bett,65,153,37,11,8,3,0,0,0,0,0,0
+1,19,18,17,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(96,154)|
+1,20,15,17,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(88,222)|
+1,21,17,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(193,174)|
+1,22,2,13,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(269,260)|
+12,23,0,310,286,20,20,4,7,0,0,-1,0,0,0
+R
+1,24,1,13,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(226,218)|
+12,25,0,166,252,20,20,4,7,0,0,-1,0,0,0
+R
+10,26,Leistungsfähigkeit,364,104,55,11,8,3,0,0,0,0,0,0
+1,27,26,3,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(526,40)|
+1,28,1,26,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(289,140)|
+1,29,26,2,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(400,158)|
+12,30,0,343,150,20,20,4,7,0,0,-1,0,0,0
+R
+12,31,0,545,77,20,20,4,7,0,0,-1,0,0,0
+R
+///---\\\
+:L<%^E!@
+9:Current
+15:0,0,0,0,0,0
+19:130,0
+27:0,
+34:0,
+5:FINAL TIME
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

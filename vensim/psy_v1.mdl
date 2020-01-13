@@ -1,0 +1,131 @@
+{UTF-8}
+Beziehung zu Kollegen  = A FUNCTION OF( Einsatz von Putschern,Erholsamkeit des Schlafs\
+		,Leistungsfähigkeit)
+	~	
+	~		|
+
+Einsatz von Downern  = A FUNCTION OF( )
+	~	
+	~		|
+
+Einsatz von Putschern  = A FUNCTION OF( )
+	~	
+	~		|
+
+Erholsamkeit des Schlafs  = A FUNCTION OF( Einsatz von Putschern,Qualität des Schlafs\
+		,Schlafmenge)
+	~	
+	~		|
+
+"Erwartungsdruck (pers / Umfeld)"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Leistungsfähigkeit  = A FUNCTION OF( Erholsamkeit des Schlafs)
+	~	
+	~		|
+
+Qualität des Schlafs  = A FUNCTION OF( Schlafhygiene,Stress)
+	~	
+	~		|
+
+Schlafhygiene  = A FUNCTION OF( )
+	~	
+	~		|
+
+Schlafmenge  = A FUNCTION OF( Einsatz von Downern,Qualität des Schlafs)
+	~	
+	~		|
+
+Stress  = A FUNCTION OF( Einsatz von Putschern,"Erwartungsdruck (pers / Umfeld)",Leistungsfähigkeit\
+		,"Unterstützung durch Angehörige / Familie",Unterstützung durch Kollegen)
+	~	
+	~		|
+
+"Unterstützung durch Angehörige / Familie"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Unterstützung durch Kollegen  = A FUNCTION OF( Beziehung zu Kollegen)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Stress,321,139,21,11,8,3,0,0,0,0,0,0
+10,2,Qualität des Schlafs,515,112,39,19,8,3,0,0,0,0,0,0
+1,3,1,2,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(415,103)|
+10,4,Schlafmenge,641,110,40,11,8,3,0,0,0,0,0,0
+1,5,2,4,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(587,90)|
+10,6,Erholsamkeit des Schlafs,752,194,55,19,8,3,0,0,0,0,0,0
+1,7,2,6,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(609,188)|
+1,8,4,6,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(714,144)|
+10,9,Einsatz von Downern,778,40,36,19,8,3,0,0,0,0,0,0
+1,10,9,4,1,0,43,2,2,128,0,-1--1--1,|0||-1--1--1,1|(691,65)|
+10,11,Leistungsfähigkeit,764,319,55,11,8,3,0,0,0,0,0,0
+10,12,Beziehung zu Kollegen,561,372,42,19,8,3,0,0,0,0,0,0
+1,13,6,11,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(778,272)|
+1,14,11,12,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(705,376)|
+1,15,6,12,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(631,271)|
+10,16,Einsatz von Putschern,472,229,36,19,8,3,0,0,0,0,0,0
+1,17,16,6,1,0,0,2,2,128,0,-1--1--1,|0||-1--1--1,1|(603,227)|
+1,18,16,12,1,0,0,2,2,128,0,-1--1--1,|0||-1--1--1,1|(465,305)|
+1,19,16,1,1,0,43,2,2,128,0,-1--1--1,|0||-1--1--1,1|(371,198)|
+10,20,Schlafhygiene,371,32,43,11,8,3,0,0,0,0,0,0
+1,21,20,2,1,0,43,2,2,128,0,-1--1--1,|0||-1--1--1,1|(471,65)|
+10,22,"Unterstützung durch Angehörige / Familie",189,72,66,19,8,3,0,0,0,0,0,0
+10,23,Unterstützung durch Kollegen,381,311,64,19,8,3,0,0,0,0,0,0
+1,24,22,1,1,0,45,2,2,128,0,-1--1--1,|0||-1--1--1,1|(282,114)|
+1,25,23,1,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(328,207)|
+10,26,"Erwartungsdruck (pers / Umfeld)",88,225,55,19,8,3,0,0,0,0,0,0
+1,27,26,1,1,0,43,2,2,128,0,-1--1--1,|0||-1--1--1,1|(222,241)|
+1,28,11,1,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(647,456)|
+1,29,12,23,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(468,405)|
+///---\\\
+:L<%^E!@
+9:Current
+15:0,0,0,0,0,0
+19:100,0
+27:0,
+34:0,
+5:Qualität des Schlafs
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

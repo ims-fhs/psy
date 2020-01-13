@@ -1,0 +1,109 @@
+{UTF-8}
+Qualität der Arbeitsbeziehungen  = A FUNCTION OF( Anerkennung,Qualität soziales Netz ausserhalb Arbeit\
+		)
+	~	
+	~		|
+
+Arbeitszeit  = A FUNCTION OF( Qualität der Arbeitsbeziehungen,Zufriedenheit mit der Arbeitsproduktivität\
+		)
+	~	
+	~		|
+
+Erledigte Aufgaben  = A FUNCTION OF( Arbeitszeit,Energielevel,Unterstützung)
+	~	
+	~		|
+
+Anerkennung  = A FUNCTION OF( Erledigte Aufgaben)
+	~	
+	~		|
+
+Energielevel  = A FUNCTION OF( Arbeitszeit,Qualität der Arbeitsbeziehungen,Qualität soziales Netz ausserhalb Arbeit\
+		,Zufriedenheit mit der Arbeitsproduktivität)
+	~	
+	~		|
+
+Qualität soziales Netz ausserhalb Arbeit  = A FUNCTION OF( Arbeitszeit)
+	~	
+	~		|
+
+Unterstützung  = A FUNCTION OF( Qualität der Arbeitsbeziehungen)
+	~	
+	~		|
+
+Zufriedenheit mit der Arbeitsproduktivität  = A FUNCTION OF( Erledigte Aufgaben)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,60,0
+10,1,Energielevel,533,262,38,11,8,3,0,0,0,0,0,0
+10,2,Erledigte Aufgaben,976,492,60,11,8,3,0,0,0,0,0,0
+10,3,Zufriedenheit mit der Arbeitsproduktivität,1400,479,66,19,8,3,0,0,0,0,0,0
+10,4,Arbeitszeit,611,767,34,11,8,3,0,0,0,0,0,0
+1,5,1,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(889,349)|
+1,6,2,3,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(1217,460)|
+1,7,3,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(1060,785)|
+1,8,4,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(775,576)|
+1,9,4,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(391,530)|
+1,10,3,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(1080,187)|
+10,11,Qualität der Arbeitsbeziehungen,735,525,62,19,8,3,0,0,0,0,0,0
+10,12,Unterstützung,829,476,43,11,8,3,0,0,0,0,0,0
+10,13,Anerkennung,775,416,42,11,8,3,0,0,0,0,0,0
+10,15,Qualität soziales Netz ausserhalb Arbeit,509,519,69,19,8,3,0,0,0,0,0,0
+1,16,15,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(512,390)|
+1,17,15,11,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(611,546)|
+1,18,11,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(574,358)|
+1,19,4,15,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(532,616)|
+1,21,11,4,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(602,658)|
+1,22,2,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(836,430)|
+1,23,13,11,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(742,448)|
+1,24,11,12,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(787,492)|
+1,25,12,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(913,501)|
+///---\\\
+:L<%^E!@
+9:Current
+15:0,0,0,0,0,0
+19:60,0
+27:0,
+34:0,
+5:Anerkennung
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

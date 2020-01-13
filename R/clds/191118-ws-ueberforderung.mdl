@@ -1,0 +1,123 @@
+{UTF-8}
+Arbeitsbelastung  = A FUNCTION OF( )
+	~	
+	~		|
+
+Arbeitsmittel  = A FUNCTION OF( Arbeitszeit,Energielevel)
+	~	
+	~		|
+
+Stress  = A FUNCTION OF( Überforderung)
+	~	
+	~		|
+
+Energielevel  = A FUNCTION OF( Arbeitszeit,Stress,Zufriedenheit mit der Arbeitsproduktivität\
+		)
+	~	
+	~		|
+
+Zufriedenheit mit der Arbeitsproduktivität  = A FUNCTION OF( Erledigte Aufgaben,Erwartungen an das Selbst\
+		)
+	~	
+	~		|
+
+Erwartungen an das Selbst  = A FUNCTION OF( )
+	~	
+	~		|
+
+Überforderung  = A FUNCTION OF( Arbeitsbelastung,Arbeitsmittel,Erwartungen an das Selbst\
+		)
+	~	
+	~		|
+
+Arbeitszeit  = A FUNCTION OF( Zufriedenheit mit der Arbeitsproduktivität)
+	~	
+	~		|
+
+Erledigte Aufgaben  = A FUNCTION OF( Arbeitszeit,Energielevel)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,90,0
+10,1,Energielevel,383,378,38,11,8,3,0,0,0,0,0,0
+10,2,Erledigte Aufgaben,668,365,60,11,8,3,0,0,0,0,0,0
+10,3,Zufriedenheit mit der Arbeitsproduktivität,1050,298,66,19,8,3,0,0,0,0,0,0
+10,4,Arbeitszeit,544,500,34,11,8,3,0,0,0,0,0,0
+1,5,1,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(585,340)|
+1,6,2,3,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(956,299)|
+1,7,3,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(598,516)|
+1,8,4,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(587,389)|
+1,9,4,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(406,404)|
+1,10,3,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(420,353)|
+12,11,0,677,467,20,20,4,7,0,0,-1,0,0,0
+B
+12,12,0,502,401,20,20,4,7,0,0,-1,0,0,0
+R
+12,13,0,679,325,20,20,5,7,0,0,-1,0,0,0
+R
+10,14,Stress,400,281,21,11,8,3,0,0,0,0,0,0
+1,15,14,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(370,345)|
+10,16,Überforderung,539,183,47,11,8,3,0,0,0,0,0,0
+1,17,16,14,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(425,236)|
+10,18,Erwartungen an das Selbst,673,89,63,28,8,131,0,0,0,0,0,0
+1,19,18,16,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(606,168)|
+1,20,18,3,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(1019,264)|
+10,21,Arbeitsbelastung,452,82,52,11,8,3,0,0,0,0,0,0
+1,22,21,16,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(540,153)|
+10,23,Arbeitsmittel,301,475,40,11,8,3,0,0,0,0,0,0
+1,24,1,23,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(314,443)|
+1,25,4,23,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(351,497)|
+1,26,23,16,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(477,167)|
+12,27,0,304,301,20,20,4,7,0,0,-1,0,0,0
+R
+12,28,0,387,461,20,20,4,7,0,0,-1,0,0,0
+B
+///---\\\
+:L<%^E!@
+9:Current
+15:0,0,0,0,0,0
+19:90,0
+27:0,
+34:0,
+5:FINAL TIME
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

@@ -1,0 +1,123 @@
+{UTF-8}
+Anerkennung  = A FUNCTION OF( Erledigte Aufgaben,Qualität der sozialen Beziehungen)
+	~	
+	~		|
+
+Ansprüche an das Selbst  = A FUNCTION OF( )
+	~	
+	~		|
+
+Gegenseitige kollegiale Hilfe  = A FUNCTION OF( Qualität der sozialen Beziehungen)
+	~	
+	~		|
+
+Emotionale Verfassung  = A FUNCTION OF( Qualität der sozialen Beziehungen,Zufriedenheit mit der Arbeitsproduktivität\
+		)
+	~	
+	~		|
+
+Energielevel  = A FUNCTION OF( Arbeitszeit,Emotionale Verfassung,Qualität der sozialen Beziehungen\
+		)
+	~	
+	~		|
+
+Erledigte Aufgaben  = A FUNCTION OF( Arbeitszeit,Energielevel)
+	~	
+	~		|
+
+Zufriedenheit mit der Arbeitsproduktivität  = A FUNCTION OF( Anerkennung,Ansprüche an das Selbst\
+		,Erledigte Aufgaben)
+	~	
+	~		|
+
+Qualität der sozialen Beziehungen  = A FUNCTION OF( Emotionale Verfassung,Gegenseitige kollegiale Hilfe\
+		,Zufriedenheit mit der Arbeitsproduktivität)
+	~	
+	~		|
+
+Arbeitszeit  = A FUNCTION OF( Zufriedenheit mit der Arbeitsproduktivität)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,80,0
+10,1,Energielevel,449,468,38,11,8,3,0,0,0,0,0,0
+10,2,Erledigte Aufgaben,697,557,60,11,8,3,0,0,0,0,0,0
+10,3,Zufriedenheit mit der Arbeitsproduktivität,1134,601,66,19,8,3,0,0,0,0,0,0
+10,4,Arbeitszeit,489,695,34,11,8,3,0,0,0,0,0,0
+1,5,1,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(635,509)|
+1,6,2,3,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(987,552)|
+1,7,3,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(648,750)|
+1,8,4,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(588,598)|
+1,9,4,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(412,544)|
+12,10,0,791,653,20,20,4,7,0,0,-1,0,0,0
+B
+12,11,0,517,562,20,20,4,7,0,0,-1,0,0,0
+R
+12,12,0,973,514,20,20,5,7,0,0,-1,0,0,0
+R
+10,13,Anerkennung,922,460,42,11,8,3,0,0,0,0,0,0
+1,14,13,3,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(1040,504)|
+1,15,2,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(809,494)|
+10,16,Gegenseitige kollegiale Hilfe,612,333,47,19,8,3,0,0,0,0,0,0
+10,17,Qualität der sozialen Beziehungen,747,411,65,19,8,3,0,0,0,0,0,0
+1,18,17,16,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(699,365)|
+1,19,16,17,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(683,386)|
+1,20,17,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(886,431)|
+10,21,Emotionale Verfassung,730,233,36,19,8,3,0,0,0,0,0,0
+1,22,3,21,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(1031,339)|
+1,23,21,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(519,331)|
+1,24,17,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(497,444)|
+1,25,21,17,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(709,297)|
+1,26,17,21,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(757,337)|
+1,27,3,17,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(1014,414)|
+10,28,Ansprüche an das Selbst,1306,480,57,19,8,3,0,0,0,0,0,0
+1,29,28,3,1,0,0,0,0,128,0,-1--1--1,,1|(1258,585)|
+///---\\\
+:L<%^E!@
+9:Current
+15:0,0,0,0,0,0
+19:80,0
+27:0,
+34:0,
+5:Qualität der sozialen Beziehungen
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0
