@@ -1,0 +1,149 @@
+{UTF-8}
+Arbeitszeit  = A FUNCTION OF( Zufriedenheit mit der Arbeitsproduktivität)
+	~	
+	~		|
+
+Zeit für Care  = A FUNCTION OF( Zufriedenheit mit der Care)
+	~	
+	~		|
+
+Verantwortungsbereich in der Care Sphäre  = A FUNCTION OF( Schocks Care Sphäre,Zufriedenheit mit der Care\
+		)
+	~	
+	~		|
+
+Ressourcen in der Erwerbssphäre  = A FUNCTION OF( Schocks Erwerbssphäre,Zufriedenheit mit der Arbeitsproduktivität\
+		)
+	~	
+	~		|
+
+Energielevel  = A FUNCTION OF( Arbeitszeit,Soziale Interaktion,Zeit für Care,Zufriedenheit mit der Arbeitsproduktivität\
+		,Zufriedenheit mit der Care)
+	~	
+	~		|
+
+Soziale Interaktion  = A FUNCTION OF( Zeit für Care)
+	~	
+	~		|
+
+Eigene Ziele Arbeit  = A FUNCTION OF( Ressourcen in der Erwerbssphäre,Zufriedenheit mit der Arbeitsproduktivität\
+		)
+	~	
+	~		|
+
+Eigene Ziele Care  = A FUNCTION OF( Verantwortungsbereich in der Care Sphäre)
+	~	
+	~		|
+
+Erbrachte Care  = A FUNCTION OF( Energielevel,Zeit für Care)
+	~	
+	~		|
+
+Erledigte Aufgaben  = A FUNCTION OF( Arbeitszeit,Energielevel)
+	~	
+	~		|
+
+Schocks Care Sphäre  = A FUNCTION OF( )
+	~	
+	~		|
+
+Schocks Erwerbssphäre  = A FUNCTION OF( )
+	~	
+	~		|
+
+Zufriedenheit mit der Arbeitsproduktivität  = A FUNCTION OF( Eigene Ziele Arbeit,Erledigte Aufgaben\
+		)
+	~	
+	~		|
+
+Zufriedenheit mit der Care  = A FUNCTION OF( Eigene Ziele Care,Erbrachte Care)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Energielevel,647,476,38,11,8,3,0,0,0,0,0,0
+10,2,Erledigte Aufgaben,778,462,60,11,8,3,0,0,0,0,0,0
+10,3,Zufriedenheit mit der Arbeitsproduktivität,914,424,66,19,8,3,0,0,0,0,0,0
+10,4,Arbeitszeit,690,412,34,13,8,131,0,0,0,0,0,0
+1,5,1,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(747,478)|
+1,6,2,3,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(881,449)|
+1,7,3,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(815,384)|
+1,8,4,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(724,453)|
+1,9,4,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(657,451)|
+1,10,3,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(723,524)|
+10,11,Zufriedenheit mit der Care,328,439,53,19,8,3,0,0,0,0,0,0
+10,12,Zeit für Care,520,412,41,11,8,3,0,0,0,0,0,0
+10,13,Erbrachte Care,552,461,49,11,8,3,0,0,0,0,0,0
+1,14,1,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(603,477)|
+1,15,12,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(518,427)|
+1,16,11,12,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(438,397)|
+1,17,13,11,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(497,504)|
+1,18,12,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(633,458)|
+1,19,11,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(599,524)|
+10,20,Verantwortungsbereich in der Care Sphäre,228,254,74,19,8,3,0,0,0,0,0,0
+10,21,Ressourcen in der Erwerbssphäre,970,231,57,19,8,3,0,0,0,0,0,0
+1,22,11,20,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(233,416)|
+1,23,3,21,1,0,43,0,2,129,0,-1--1--1,|12||0-0-0,1|(1017,370)|
+10,24,Eigene Ziele Care,428,312,56,11,8,3,0,0,0,0,0,0
+1,25,20,24,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(366,239)|
+1,26,24,11,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(387,401)|
+10,27,Eigene Ziele Arbeit,884,325,60,11,8,3,0,0,0,0,0,0
+1,28,21,27,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(904,278)|
+1,29,27,3,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(881,364)|
+10,30,Schocks Care Sphäre,99,143,46,19,8,3,0,0,0,0,0,0
+10,31,Schocks Erwerbssphäre,1117,134,48,19,8,3,0,0,0,0,0,0
+1,32,30,20,1,0,0,0,0,128,0,-1--1--1,,1|(224,214)|
+1,33,31,21,1,0,0,0,0,128,0,-1--1--1,,1|(995,177)|
+1,34,3,27,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(918,371)|
+10,35,Soziale Interaktion,596,377,58,11,8,3,0,0,0,0,0,0
+1,36,12,35,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(552,392)|
+1,37,35,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(635,419)|
+///---\\\
+:L<%^E!@
+9:Current
+15:0,0,0,0,0,0
+19:100,0
+27:0,
+34:0,
+5:Arbeitszeit
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

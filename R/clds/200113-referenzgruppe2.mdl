@@ -1,0 +1,106 @@
+{UTF-8}
+Arbeitszeit  = A FUNCTION OF( Zufriedenheit mit der Arbeitsproduktivität)
+	~	
+	~		|
+
+Zeit für Care  = A FUNCTION OF( Zufriedenheit mit der Care)
+	~	
+	~		|
+
+Zufriedenheit mit der Arbeitsproduktivität  = A FUNCTION OF( Erledigte Aufgaben)
+	~	
+	~		|
+
+Zufriedenheit mit der Care  = A FUNCTION OF( Erbrachte Care)
+	~	
+	~		|
+
+Energielevel  = A FUNCTION OF( Arbeitszeit,Soziale Interaktion,Zeit für Care,Zufriedenheit mit der Arbeitsproduktivität\
+		,Zufriedenheit mit der Care)
+	~	
+	~		|
+
+Soziale Interaktion  = A FUNCTION OF( Zeit für Care)
+	~	
+	~		|
+
+Erbrachte Care  = A FUNCTION OF( Energielevel,Zeit für Care)
+	~	
+	~		|
+
+Erledigte Aufgaben  = A FUNCTION OF( Arbeitszeit,Energielevel)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Energielevel,647,442,38,11,8,3,0,0,0,0,0,0
+10,2,Erledigte Aufgaben,778,428,60,11,8,3,0,0,0,0,0,0
+10,3,Zufriedenheit mit der Arbeitsproduktivität,914,390,66,19,8,3,0,0,0,0,0,0
+10,4,Arbeitszeit,690,378,34,13,8,131,0,0,0,0,0,0
+1,5,1,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(747,444)|
+1,6,2,3,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(881,415)|
+1,7,3,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(815,350)|
+1,8,4,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(724,419)|
+1,9,4,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(657,417)|
+1,10,3,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(723,490)|
+10,11,Zufriedenheit mit der Care,328,405,53,19,8,3,0,0,0,0,0,0
+10,12,Zeit für Care,520,378,41,11,8,3,0,0,0,0,0,0
+10,13,Erbrachte Care,457,433,49,11,8,3,0,0,0,0,0,0
+1,14,1,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(560,469)|
+1,15,12,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(481,420)|
+1,16,11,12,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(438,363)|
+1,17,13,11,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(424,443)|
+1,18,12,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(633,424)|
+1,19,11,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(599,490)|
+10,20,Soziale Interaktion,596,343,58,11,8,3,0,0,0,0,0,0
+1,21,12,20,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(552,358)|
+1,22,20,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(635,385)|
+///---\\\
+:L<%^E!@
+9:Current
+15:0,0,0,0,0,0
+19:100,0
+27:0,
+34:0,
+5:Arbeitszeit
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

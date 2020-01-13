@@ -1,0 +1,195 @@
+{UTF-8}
+Ressourcen in der Erwerbssphäre  = A FUNCTION OF( Arbeitszeit,Schocks Erwerbssphäre\
+		,Zufriedenheit mit der Arbeitsproduktivität)
+	~	
+	~		|
+
+Verantwortungsbereich in der Care Sphäre  = A FUNCTION OF( Erbrachte Care,Schocks Care Sphäre\
+		,Zufriedenheit mit der Care)
+	~	
+	~		|
+
+Energielevel  = A FUNCTION OF( Arbeitszeit,Soziale Interaktion,Zeit für Care,Zufriedenheit mit der Arbeitsproduktivität\
+		,Zufriedenheit mit der Care)
+	~	
+	~		|
+
+Relative Wichtigkeit der Care Sphäre  = A FUNCTION OF( Aneignung der Rolle,Ressourcen in der Erwerbssphäre\
+		)
+	~	
+	~		|
+
+Soziale Interaktion  = A FUNCTION OF( Zeit für Care)
+	~	
+	~		|
+
+Aneignung der Rolle  = A FUNCTION OF( Verantwortungsbereich in der Care Sphäre)
+	~	
+	~		|
+
+Arbeitszeit  = A FUNCTION OF( Entlastung in der Erwerbssphäre,Zufriedenheit mit der Arbeitsproduktivität\
+		)
+	~	
+	~		|
+
+Eigene Ziele Arbeit  = A FUNCTION OF( Ressourcen in der Erwerbssphäre,Zufriedenheit mit der Arbeitsproduktivität\
+		)
+	~	
+	~		|
+
+Eigene Ziele Care  = A FUNCTION OF( Verantwortungsbereich in der Care Sphäre)
+	~	
+	~		|
+
+Entlastung in der Care  = A FUNCTION OF( Aneignung der Rolle,Selbstmanagementfähigkeit\
+		)
+	~	
+	~		|
+
+Entlastung in der Erwerbssphäre  = A FUNCTION OF( Selbstmanagementfähigkeit)
+	~	
+	~		|
+
+Erbrachte Care  = A FUNCTION OF( Energielevel,Zeit für Care)
+	~	
+	~		|
+
+Erledigte Aufgaben  = A FUNCTION OF( Arbeitszeit,Energielevel)
+	~	
+	~		|
+
+Schocks Care Sphäre  = A FUNCTION OF( )
+	~	
+	~		|
+
+Schocks Erwerbssphäre  = A FUNCTION OF( )
+	~	
+	~		|
+
+Selbstmanagementfähigkeit  = A FUNCTION OF( Ressourcen in der Erwerbssphäre,"Wirtschaftliche, soziale und psychische Bewältigungsressourcen"\
+		)
+	~	
+	~		|
+
+"Wirtschaftliche, soziale und psychische Bewältigungsressourcen"  = A FUNCTION OF( )
+	~	
+	~		|
+
+Zeit für Care  = A FUNCTION OF( Entlastung in der Care,Zufriedenheit mit der Care)
+	~	
+	~		|
+
+Zufriedenheit mit der Arbeitsproduktivität  = A FUNCTION OF( Eigene Ziele Arbeit,Erledigte Aufgaben\
+		)
+	~	
+	~		|
+
+Zufriedenheit mit der Care  = A FUNCTION OF( Eigene Ziele Care,Erbrachte Care)
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|96,96,100,0
+10,1,Energielevel,647,442,38,11,8,3,0,0,0,0,0,0
+10,2,Erledigte Aufgaben,767,415,60,11,8,3,0,0,0,0,0,0
+10,3,Zufriedenheit mit der Arbeitsproduktivität,942,435,66,19,8,3,0,0,0,0,0,0
+10,4,Arbeitszeit,774,361,34,13,8,131,0,0,0,0,0,0
+1,5,1,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(739,432)|
+1,6,2,3,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(891,454)|
+1,7,3,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(876,381)|
+1,8,4,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(764,387)|
+1,9,4,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(679,397)|
+1,10,3,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(720,513)|
+10,11,Zufriedenheit mit der Care,333,423,53,19,8,3,0,0,0,0,0,0
+10,12,Zeit für Care,515,419,41,11,8,3,0,0,0,0,0,0
+10,13,Erbrachte Care,562,485,49,11,8,3,0,0,0,0,0,0
+1,14,1,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(612,468)|
+1,15,12,13,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(509,443)|
+1,16,11,12,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(442,408)|
+1,17,13,11,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(497,523)|
+1,18,12,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(629,430)|
+1,19,11,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(634,499)|
+10,20,Verantwortungsbereich in der Care Sphäre,228,220,74,19,8,3,0,0,0,0,0,0
+10,21,Ressourcen in der Erwerbssphäre,970,197,57,19,8,3,0,0,0,0,0,0
+1,22,11,20,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(187,417)|
+1,23,3,21,1,0,43,0,2,129,0,-1--1--1,|12||0-0-0,1|(1072,353)|
+10,24,Eigene Ziele Care,428,278,56,11,8,3,0,0,0,0,0,0
+1,25,20,24,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(366,205)|
+1,26,24,11,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(404,381)|
+10,27,Eigene Ziele Arbeit,884,291,60,11,8,3,0,0,0,0,0,0
+1,28,21,27,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(904,244)|
+1,29,27,3,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(875,353)|
+10,30,Schocks Care Sphäre,99,109,46,19,8,3,0,0,0,0,0,0
+10,31,Schocks Erwerbssphäre,1123,89,48,19,8,3,0,0,0,0,0,0
+1,32,30,20,1,0,0,0,0,128,0,-1--1--1,,1|(148,148)|
+1,33,31,21,1,0,0,0,0,128,0,-1--1--1,,1|(1030,117)|
+10,34,Selbstmanagementfähigkeit,757,201,40,30,8,3,0,0,0,0,0,0
+1,35,21,34,1,0,43,0,2,129,0,-1--1--1,|12||0-0-0,1|(859,171)|
+10,36,Aneignung der Rolle,488,160,46,19,8,3,0,0,0,0,0,0
+10,37,Entlastung in der Erwerbssphäre,687,267,53,19,8,3,0,0,0,0,0,0
+1,38,34,37,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(696,232)|
+1,39,37,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(720,327)|
+10,40,Entlastung in der Care,524,222,53,19,8,3,0,0,0,0,0,0
+1,41,36,40,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(527,191)|
+1,42,40,12,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(538,278)|
+1,43,20,36,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(305,152)|
+10,44,"Wirtschaftliche, soziale und psychische Bewältigungsressourcen",737,103,86,28,8,3,0,0,0,0,0,0
+1,45,44,34,1,0,0,0,0,128,0,-1--1--1,,1|(718,143)|
+1,46,34,40,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(614,196)|
+1,47,3,27,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(955,350)|
+10,48,Soziale Interaktion,603,363,58,11,8,3,0,0,0,0,0,0
+1,49,12,48,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(550,387)|
+1,50,48,1,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(651,396)|
+1,51,4,21,1,0,43,2,3,128,0,255-255-0,|12||0-0-0,1|(827,237)|
+1,52,13,20,1,0,43,2,3,128,0,255-255-0,|12||0-0-0,1|(468,321)|
+10,53,Relative Wichtigkeit der Care Sphäre,577,78,64,19,8,3,0,0,0,0,0,0
+1,54,36,53,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(501,98)|
+1,55,21,53,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(679,55)|
+///---\\\
+:L<%^E!@
+9:Current
+15:0,0,0,0,0,0
+19:100,0
+27:0,
+34:0,
+5:Arbeitszeit
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0
