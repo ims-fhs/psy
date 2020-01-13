@@ -1,7 +1,7 @@
 imsbasics::clc()
-library(tree)
-library(boot)
-library(dplyr)
+library(arules)
+library(arulesViz)
+library(arulesCBA)
 
 source("r/00-psy-import.r")
 
@@ -16,15 +16,15 @@ iss <- cbind(iss, impact_on_work)
 male <- as.numeric(df$gender) - 1
 iss <- cbind(iss, male)
 
-nrow <- 2000
+nrow <- 40
 iss <- as.data.frame(sapply(iss, as.logical))
 iss_sample <- iss
 iss_sample_true <- iss_sample[iss_sample$impact_on_work, ][1:(nrow/2), ]
 iss_sample_false <- iss_sample[!iss_sample$impact_on_work, ][1:(nrow/2), ]
 
 iss_sample <- rbind(iss_sample_true, iss_sample_false)
+iss_sample <- as.data.frame(sapply(iss_sample, as.factor))
 
-library(randomForest)
 
 set.seed(131)
 
@@ -35,26 +35,16 @@ entry_time <- Sys.time()
 prediction <- NULL
 for (i in 1:nrow(iss_sample)) {
   print(i)
-  rf <- randomForest(as.factor(impact_on_work) ~ ., data=iss_sample[-i,])
-  prediction[[i]] <- predict(rf, newdata=iss_sample[i,])
+  classifier <- CBA(impact_on_work~., iss_sample[-i, ])
+  prediction[[i]] <- predict(classifier, iss_sample[i, ])
   time <- Sys.time()
-  duration_left <- (time-entry_time)/i*((nrow(iss_sample)-i))
+  duration_left <- (time-entry_time)/i*((nrow(iss_sample) - i))
   print(paste0("Voraussichtliches Ende: ", time + duration_left))
 }
 
-iss_sample$impact_on_work
+impact <- as.logical(iss_sample$impact_on_work)
 prediction <- as.logical(prediction-1)
-prediction
 
-sum(iss_sample$impact_on_work == prediction)/nrow
-sum(prediction > iss_sample$impact_on_work)/nrow
-sum(prediction < iss_sample$impact_on_work)/nrow
-
-save(rf, file = "data/rf.Rdata")
-save(prediction, file = "data/prediction.Rdata")
-save(iss_sample, file = "data/iss_sample.Rdata")
-
-
-load("data/rf.Rdata")
-load("data/prediction.Rdata")
-load("data/iss_sample.Rdata")
+sum(impact == prediction)/nrow
+sum(prediction > impact)/nrow
+sum(prediction < impact)/nrow
