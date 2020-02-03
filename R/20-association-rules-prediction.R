@@ -16,20 +16,51 @@ iss <- cbind(iss, impact_on_work)
 male <- as.numeric(df$gender) - 1
 iss <- cbind(iss, male)
 
-nrow <- 40
+nrow <- 8000
 iss <- as.data.frame(sapply(iss, as.logical))
+iss_male <- iss[iss$male, ]
+iss_male <- iss[, -ncol(iss_male)]
 iss_sample <- iss
 iss_sample_true <- iss_sample[iss_sample$impact_on_work, ][1:(nrow/2), ]
 iss_sample_false <- iss_sample[!iss_sample$impact_on_work, ][1:(nrow/2), ]
 
 iss_sample <- rbind(iss_sample_true, iss_sample_false)
 iss_sample <- as.data.frame(sapply(iss_sample, as.factor))
-
+iss_sample_apriori <- as.data.frame(sapply(iss_sample, as.logical))
 
 set.seed(131)
 
 assertthat::assert_that(assertthat::are_equal(nrow(iss_sample), nrow))
 assertthat::assert_that(assertthat::are_equal(ncol(iss_sample), 94))
+
+iss.apriori <- arules::apriori(iss, parameter = list(support = 0.0001))
+arules::inspect(iss.apriori)
+plot(iss.apriori, method = "grouped")
+plot(iss.apriori, method = "paracoord")
+
+iss.apriori <- arules::apriori(iss_sample_apriori, parameter = list(support = 0.01))
+arules::inspect(iss.apriori)
+plot(iss.apriori, method = "grouped")
+plot(iss.apriori, method = "paracoord")
+
+
+?arules::apriori
+
+iss.apriori <- arules::apriori(iss[, -ncol(iss)], parameter = list(support = 0.0001))
+arules::inspect(iss.apriori)
+plot(iss.apriori[1:5, ], method = "grouped")
+plot(iss.apriori[1:5, ], method = "paracoord")
+plot(iss.apriori, method = "grouped")
+plot(iss.apriori, method = "paracoord")
+
+#Diagnose Männlichkeit
+iss.apriori <- arules::apriori(iss[iss$male == TRUE, -ncol(iss)], parameter = list(support = 0.0002))
+arules::inspect(iss.apriori[1:5,])
+plot(iss.apriori[1:5, ], method = "grouped")
+plot(iss.apriori[1:5, ], method = "paracoord")
+plot(iss.apriori, method = "grouped")
+plot(iss.apriori, method = "paracoord")
+
 
 entry_time <- Sys.time()
 prediction <- NULL
