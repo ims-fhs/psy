@@ -2,4 +2,9 @@
 .Rhistory
 .RData
 .Ruserdata
+*.pdf
+*.png
+*.2mdl
+*.3vm
+*.vdf
 data

@@ -1,0 +1,134 @@
+{UTF-8}
+Arbeitszufriedenheit und Selbstwirksamkeit  = A FUNCTION OF( Erwartungen an die eigene Tätigkeit\
+		,Ergebnisse eigener Tätigkeit)
+	~	
+	~		|
+
+Ressourcen und Kompetenzen  = A FUNCTION OF( Arbeitszufriedenheit und Selbstwirksamkeit\
+		,Veränderungen der Lebenslage)
+	~	
+	~		|
+
+Kurzfristige Handlungsfähigkeit  = A FUNCTION OF( Subjektive Beanspruchung)
+	~	
+	~		|
+
+Erwartungen an die eigene Tätigkeit  = A FUNCTION OF( Belastungsfaktoren,Entlastungsmöglichkeiten\
+		,Selbstwirksamkeitserwartung)
+	~	
+	~		|
+
+Selbstwirksamkeitserwartung  = A FUNCTION OF( Ressourcen und Kompetenzen)
+	~	
+	~		|
+
+Selbstkontrolle und Partizipation  = A FUNCTION OF( Ressourcen und Kompetenzen)
+	~	
+	~		|
+
+Entlastungsmöglichkeiten  = A FUNCTION OF( Selbstkontrolle und Partizipation)
+	~	
+	~		|
+
+Subjektive Beanspruchung  = A FUNCTION OF( Arbeitszufriedenheit und Selbstwirksamkeit\
+		)
+	~	
+	~		|
+
+Ergebnisse eigener Tätigkeit  = A FUNCTION OF( Subjektive Beanspruchung,Kurzfristige Handlungsfähigkeit\
+		)
+	~	
+	~		|
+
+Belastungsfaktoren  = A FUNCTION OF( )
+	~	
+	~		|
+
+Veränderungen der Lebenslage  = A FUNCTION OF( )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,5,0
+10,1,Kurzfristige Handlungsfähigkeit,627,23,51,14,8,3,0,0,0,0,0,0
+10,2,Ergebnisse eigener Tätigkeit,533,148,49,14,8,3,0,0,0,0,0,0
+1,3,1,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(589,128)|
+10,4,Arbeitszufriedenheit und Selbstwirksamkeit,422,222,58,14,8,131,0,0,0,0,0,0
+1,5,2,4,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(507,193)|
+10,6,Ressourcen und Kompetenzen,542,420,41,14,8,3,0,0,0,0,0,0
+10,7,Veränderungen der Lebenslage,651,517,49,14,8,3,0,0,0,0,0,0
+1,8,7,6,1,0,0,0,3,128,0,0-128-0,|12||0-0-0,1|(574,473)|
+10,9,Selbstkontrolle und Partizipation,201,469,50,14,8,3,0,0,0,0,0,0
+10,10,Selbstwirksamkeitserwartung,404,383,84,11,8,131,0,0,0,0,0,0
+1,11,6,10,1,0,43,0,3,0,0,255-128-0,|12||0-0-0,1|(430,411)|
+10,12,Entlastungsmöglichkeiten,199,353,71,12,8,131,0,0,0,0,0,0
+1,13,9,12,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(170,395)|
+10,16,Belastungsfaktoren,223,229,49,8,8,131,0,0,0,0,0,0
+1,17,16,23,1,0,0,0,3,128,0,0-128-0,|12||0-0-0,1|(273,248)|
+10,18,Subjektive Beanspruchung,376,71,42,19,8,131,0,0,0,0,0,0
+1,19,4,18,1,0,45,0,3,128,0,255-128-0,|12||0-0-0,1|(358,113)|
+1,22,18,2,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(518,119)|
+10,23,Erwartungen an die eigene Tätigkeit,354,316,50,14,8,131,0,0,0,0,0,0
+1,24,23,4,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(363,246)|
+1,25,12,23,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(271,313)|
+1,26,18,1,1,0,45,0,2,128,0,-1--1--1,|12||0-0-0,1|(587,-6)|
+1,27,10,23,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(355,340)|
+1,28,4,6,1,0,43,0,2,128,0,-1--1--1,|12||0-0-0,1|(580,330)|
+1,29,6,9,1,0,43,0,3,128,0,255-128-0,|12||0-0-0,1|(258,496)|
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+23:0
+15:0,0,0,0,0,0
+19:5,0
+27:2,
+34:0,
+5:Erwartungen an die eigene Tätigkeit
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0

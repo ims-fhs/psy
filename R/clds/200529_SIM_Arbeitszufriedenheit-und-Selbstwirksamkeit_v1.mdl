@@ -1,0 +1,119 @@
+{UTF-8}
+Zuflussrate=
+	(Angestrebter Deckungsgrad der Erwartungen*Ergebnisse eigener Tätigkeit)/Erwartungen an die eigene Tätigkeit\
+		/Zerfallszeit von AuZ
+	~	
+	~		|
+
+Angestrebter Deckungsgrad der Erwartungen=
+	0.8
+	~	
+	~		|
+
+Abflussrate=
+	1/Zerfallszeit von AuZ*Arbeitszufriedenheit und Selbstwirksamkeit
+	~	
+	~		|
+
+Arbeitszufriedenheit und Selbstwirksamkeit= INTEG (
+	Zuflussrate-Abflussrate,
+		0.5)
+	~	1 [0,1]
+	~		|
+
+Zerfallszeit von AuZ=
+	10
+	~	
+	~		|
+
+Ergebnisse eigener Tätigkeit=
+	0.5
+	~	1/Week
+	~		|
+
+Erwartungen an die eigene Tätigkeit=
+	0.5
+	~	1/Week
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Week
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Week
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Week [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Week [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Arbeitszufriedenheit und Selbstwirksamkeit,553,168,100,26,3,131,0,0,0,0,0,0
+12,2,48,258,171,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(409,171)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(311,171)|
+11,5,48,360,171,6,8,34,3,0,0,1,0,0,0
+10,6,Zuflussrate,360,200,29,8,40,3,0,0,-1,0,0,0
+10,7,Erwartungen an die eigene Tätigkeit,341,348,50,14,8,3,0,0,0,0,0,0
+1,8,7,6,1,0,0,0,0,128,0,-1--1--1,,1|(388,268)|
+10,9,Ergebnisse eigener Tätigkeit,219,307,49,14,8,3,0,0,0,0,0,0
+1,10,9,6,1,0,0,0,0,128,0,-1--1--1,,1|(330,271)|
+12,11,48,802,166,10,8,0,3,0,0,-1,0,0,0
+1,12,14,11,4,0,0,22,0,0,0,-1--1--1,,1|(760,166)|
+1,13,14,1,100,0,0,22,0,0,0,-1--1--1,,1|(684,166)|
+11,14,48,722,166,6,8,34,3,0,0,1,0,0,0
+10,15,Abflussrate,722,182,30,8,40,3,0,0,-1,0,0,0
+1,16,1,15,1,0,0,0,0,128,0,-1--1--1,,1|(681,222)|
+10,17,Zerfallszeit von AuZ,558,307,52,8,8,3,0,0,0,0,0,0
+1,18,17,15,1,0,0,0,0,128,0,-1--1--1,,1|(702,268)|
+10,19,Angestrebter Deckungsgrad der Erwartungen,150,244,47,21,8,3,0,0,0,0,0,0
+1,20,19,6,1,0,0,0,0,128,0,-1--1--1,,1|(267,234)|
+1,21,17,6,1,0,0,0,0,64,0,-1--1--1,,1|(472,226)|
+///---\\\
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Zuflussrate
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:3
+41:0
+42:1
+24:0
+25:100
+26:100

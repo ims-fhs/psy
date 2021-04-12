@@ -1,0 +1,131 @@
+{UTF-8}
+Abfluss=
+	MAX(0, -LogVerhältnis/Anpassungszeit*Arbeitszufriedenheit und Selbstwirksamkeit)
+	~	
+	~		|
+
+LogVerhältnis=
+	LOG(Verhältnis, 10)
+	~	
+	~		|
+
+Verhältnis=
+	Ergebnisse eigener Tätigkeit/Erwartungen an die eigene Tätigkeit
+	~	
+	~		|
+
+Zuwachs=
+	MAX(0, LogVerhältnis/Anpassungszeit*(1-Arbeitszufriedenheit und Selbstwirksamkeit))
+	~	
+	~		|
+
+Arbeitszufriedenheit und Selbstwirksamkeit= INTEG (
+	Zuwachs-Abfluss,
+		0.65)
+	~	1 [0,1]
+	~		|
+
+Anpassungszeit=
+	10
+	~	
+	~		|
+
+Ergebnisse eigener Tätigkeit=
+	0.5
+	~	1/Week
+	~		|
+
+Erwartungen an die eigene Tätigkeit=
+	0.5
+	~	1/Week
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Week
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Week
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP
+	~	Week [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Week [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,100,0
+10,1,Arbeitszufriedenheit und Selbstwirksamkeit,553,216,100,26,3,131,0,0,0,0,0,0
+12,2,48,258,219,10,8,0,3,0,0,-1,0,0,0
+1,3,5,1,4,0,0,22,0,0,0,-1--1--1,,1|(409,219)|
+1,4,5,2,100,0,0,22,0,0,0,-1--1--1,,1|(311,219)|
+11,5,48,360,219,6,8,34,3,0,0,1,0,0,0
+10,6,Zuwachs,360,248,24,8,40,3,0,0,-1,0,0,0
+10,7,Erwartungen an die eigene Tätigkeit,113,192,50,14,8,3,0,0,0,0,0,0
+10,9,Ergebnisse eigener Tätigkeit,219,355,49,14,8,3,0,0,0,0,0,0
+12,11,48,787,215,10,8,0,3,0,0,-1,0,0,0
+1,12,14,11,4,0,0,22,0,0,0,-1--1--1,,1|(749,215)|
+1,13,14,1,100,0,0,22,0,0,0,-1--1--1,,1|(681,215)|
+11,14,48,715,215,6,8,34,3,0,0,1,0,0,0
+10,15,Abfluss,715,237,21,8,40,3,0,0,-1,0,0,0
+1,18,1,15,1,0,0,0,0,128,0,-1--1--1,,1|(624,277)|
+10,19,Anpassungszeit,423,106,40,8,8,3,0,0,0,0,0,0
+10,21,Verhältnis,231,294,27,8,8,3,0,0,0,0,0,0
+1,22,7,21,1,0,0,0,0,128,0,-1--1--1,,1|(157,256)|
+1,23,9,21,1,0,0,0,0,128,0,-1--1--1,,1|(195,314)|
+1,24,1,6,1,0,0,0,0,128,0,-1--1--1,,1|(490,270)|
+1,27,19,6,1,0,0,0,0,128,0,-1--1--1,,1|(363,179)|
+1,28,19,15,1,0,0,0,0,128,0,-1--1--1,,1|(657,162)|
+10,29,LogVerhältnis,338,329,36,8,8,3,0,0,0,0,0,0
+1,30,21,29,1,0,0,0,0,128,0,-1--1--1,,1|(265,321)|
+1,31,29,6,1,0,0,0,0,128,0,-1--1--1,,1|(355,288)|
+1,32,29,15,1,0,0,0,0,128,0,-1--1--1,,1|(558,308)|
+12,33,0,283,429,80,20,3,92,0,0,0,0,0,0
+Ergebnisse eigener Tätigkeit,0.1,1,0.1
+12,34,0,281,495,80,20,3,124,0,0,0,0,0,0
+Erwartungen an die eigene Tätigkeit,0.1,1,0
+///---\\\
+:L<%^E!@
+1:Current.vdf
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:100,0
+27:2,
+34:0,
+4:Time
+5:Abfluss
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:3
+41:0
+42:1
+24:0
+25:100
+26:100

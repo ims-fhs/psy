@@ -1,0 +1,156 @@
+{UTF-8}
+Belastung  = A FUNCTION OF( "Bewältigungsstrategie - Hinzunahme von entlastenden Ressourcen"\
+		,"Selbstwirksamkeit / Anerkennung für und Zufriedenheit mit der eigenen Tätigkeit"\
+		)
+	~	
+	~		|
+
+"Bewältigungsstrategie - Hinzunahme von entlastenden Ressourcen"  = A FUNCTION OF( "Rollenaneignung / Handlungsbegründungen"\
+		,Selbstmanagementfähigkeit)
+	~	
+	~		|
+
+Erledigte Aufgaben  = A FUNCTION OF( Belastung,"Handlungsfähigkeit / Energielevel / Gesundheitserhaltung /"\
+		)
+	~	
+	~		|
+
+"Handlungsfähigkeit / Energielevel / Gesundheitserhaltung /"  = A FUNCTION OF( Belastung\
+		)
+	~	
+	~		|
+
+Lebenslagenspezifische Ziele  = A FUNCTION OF( "Ressourcen, Verantwortung, Soziale Interaktion, Weiterentwicklung"\
+		)
+	~	
+	~		|
+
+"Ressourcen, Verantwortung, Soziale Interaktion, Weiterentwicklung"  = A FUNCTION OF( \
+		Schocks in Care oder Erwerbssphäre,"Selbstwirksamkeit / Anerkennung für und Zufriedenheit mit der eigenen Tätigkeit"\
+		)
+	~	
+	~		|
+
+"Rollenaneignung / Handlungsbegründungen"  = A FUNCTION OF( "Ressourcen, Verantwortung, Soziale Interaktion, Weiterentwicklung"\
+		)
+	~	
+	~		|
+
+Schocks in Care oder Erwerbssphäre  = A FUNCTION OF( )
+	~	
+	~		|
+
+Selbstmanagementfähigkeit  = A FUNCTION OF( "Ressourcen, Verantwortung, Soziale Interaktion, Weiterentwicklung"\
+		,"Wirtschaftliche, soziale und psychische Bewältigungsressourcen")
+	~	
+	~		|
+
+"Selbstwirksamkeit / Anerkennung für und Zufriedenheit mit der eigenen Tätigkeit"  = A FUNCTION OF( \
+		Erledigte Aufgaben,Lebenslagenspezifische Ziele)
+	~	
+	~		|
+
+"Wirtschaftliche, soziale und psychische Bewältigungsressourcen"  = A FUNCTION OF( )
+	~	
+	~		|
+
+********************************************************
+	.Control
+********************************************************~
+		Simulation Control Parameters
+	|
+
+FINAL TIME  = 100
+	~	Month
+	~	The final time for the simulation.
+	|
+
+INITIAL TIME  = 0
+	~	Month
+	~	The initial time for the simulation.
+	|
+
+SAVEPER  = 
+        TIME STEP 
+	~	Month [0,?]
+	~	The frequency with which output is stored.
+	|
+
+TIME STEP  = 1
+	~	Month [0,?]
+	~	The time step for the simulation.
+	|
+
+\\\---/// Sketch information - do not modify anything except names
+V300  Do not put anything below this section - it will be ignored
+*View 1
+$192-192-192,0,Times New Roman|12||0-0-0|0-0-0|0-0-255|-1--1--1|-1--1--1|72,72,140,0
+10,1,"Handlungsfähigkeit / Energielevel / Gesundheitserhaltung /",631,357,59,21,8,3,0,0,0,0,0,0
+10,2,Erledigte Aufgaben,475,429,49,8,8,3,0,0,0,0,0,0
+1,3,1,2,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(542,441)|
+10,4,"Selbstwirksamkeit / Anerkennung für und Zufriedenheit mit der eigenen Tätigkeit",346,364,76,28,8,131,0,0,0,0,0,0
+1,5,2,4,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(436,429)|
+12,7,0,556,349,20,20,4,7,0,0,-1,0,0,0
+R1
+12,8,0,631,336,57,8,8,7,0,0,-1,0,0,0
+Beanspruchungsfolgen
+10,9,Belastung,456,292,26,8,8,3,0,0,0,0,0,0
+1,10,4,9,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(409,301)|
+1,11,9,1,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(530,278)|
+1,13,9,2,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(510,387)|
+12,14,0,456,357,20,20,4,7,0,0,-1,0,0,0
+B1
+10,15,"Ressourcen, Verantwortung, Soziale Interaktion, Weiterentwicklung",281,157,72,21,8,3,0,0,0,0,0,0
+1,16,4,15,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(271,315)|
+10,18,Lebenslagenspezifische Ziele,232,425,61,14,8,3,0,0,0,0,0,0
+1,19,15,18,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(156,232)|
+1,20,18,4,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(267,438)|
+12,21,0,203,304,20,20,5,7,0,0,-1,0,0,0
+B2
+10,22,Schocks in Care oder Erwerbssphäre,182,73,55,14,8,3,0,0,0,0,0,0
+1,23,22,15,1,0,0,0,0,128,0,-1--1--1,,1|(231,130)|
+10,24,Selbstmanagementfähigkeit,447,140,40,15,8,3,0,0,0,0,0,0
+1,25,15,24,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(380,125)|
+10,26,"Rollenaneignung / Handlungsbegründungen",344,223,65,14,8,3,0,0,0,0,0,0
+1,27,15,26,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(329,200)|
+10,28,"Wirtschaftliche, soziale und psychische Bewältigungsressourcen",598,78,71,21,8,3,0,0,0,0,0,0
+1,29,28,24,1,0,0,0,0,128,0,-1--1--1,,1|(526,122)|
+10,30,"Bewältigungsstrategie - Hinzunahme von entlastenden Ressourcen",497,223,63,21,8,3,0,0,0,0,0,0
+1,31,24,30,1,0,43,0,2,128,0,-1--1--1,|0||-1--1--1,1|(510,165)|
+1,32,30,9,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(488,250)|
+1,33,26,30,1,0,45,0,2,128,0,-1--1--1,|0||-1--1--1,1|(413,251)|
+12,35,0,400,173,20,20,4,7,0,0,-1,0,0,0
+B/R3
+12,36,0,330,273,20,20,4,7,0,0,-1,0,0,0
+B/R4
+12,40,0,563,382,41,8,8,7,0,0,-1,0,0,0
+Stress / Eustress
+12,41,0,212,340,56,8,8,7,0,0,-1,0,0,0
+Anpassung von Zielen
+///---\\\
+:L<%^E!@
+9:Current
+22:$,Dollar,Dollars,$s
+22:Day,Days
+22:Hour,Hours
+22:Month,Months
+22:Person,People,Persons
+22:Unit,Units
+22:Week,Weeks
+22:Year,Years
+15:0,0,0,0,0,0
+19:140,0
+27:2,
+34:0,
+5:"Ressourcen, Verantwortung, Soziale Interaktion, Weiterentwicklung"
+35:Date
+36:YYYY-MM-DD
+37:2000
+38:1
+39:1
+40:2
+41:0
+42:1
+24:0
+25:0
+26:0
